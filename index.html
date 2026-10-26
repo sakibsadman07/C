@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class Routine 2026</title>
+<style>
+:root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f2f4f9;--card:#fff;--text:#161a23;--muted:#667085;--line:#e4e8f0;--shadow:0 4px 16px rgba(30,50,110,.08);--chip:#eef2fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1218;--card:#1a1f2a;--text:#eef1f7;--muted:#98a2b3;--line:#2a3140;--shadow:0 4px 16px rgba(0,0,0,.35);--chip:#252c3a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f1218;--card:#1a1f2a;--text:#eef1f7;--muted:#98a2b3;--line:#2a3140;--shadow:0 4px 16px rgba(0,0,0,.35);--chip:#252c3a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4}
+.hero{background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 26px) 20px 70px;border-radius:0 0 28px 28px}
+.hero .in{max-width:560px;margin:0 auto}
+.inst{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+h1{font-size:2rem;margin:6px 0 10px;line-height:1.15}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:rgba(255,255,255,.2);backdrop-filter:blur(4px);border-radius:999px;padding:5px 12px;font-size:.85rem}
+main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
+.days{display:flex;gap:6px;background:var(--card);border-radius:18px;padding:6px;box-shadow:var(--shadow);margin-bottom:18px}
+.days button{flex:1;border:0;background:transparent;color:var(--muted);border-radius:13px;padding:10px 0;font-size:.82rem;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px}
+.days button b{font-size:1.05rem;color:var(--text)}
+.days button.on{background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff}
+.days button.on b{color:#fff}
+.days button.td:not(.on)::after{content:"";width:5px;height:5px;border-radius:50%;background:#0ea5e9;margin-top:2px}
+.dh{display:flex;justify-content:space-between;align-items:baseline;margin:4px 4px 12px}
+.dh h2{margin:0;font-size:1.3rem}
+.dh span{color:var(--muted);font-size:.85rem}
+.card{position:relative;display:flex;gap:12px;background:var(--card);border-radius:18px;padding:14px 14px 14px 18px;margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.time{min-width:62px;text-align:center;border-right:1px dashed var(--line);padding-right:12px;display:flex;flex-direction:column;justify-content:center}
+.time .p{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.time .t{font-size:.95rem;font-weight:700;margin-top:2px}
+.time .t2{font-size:.75rem;color:var(--muted)}
+.body{flex:1;min-width:0}
+.name{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.teacher{margin-top:3px;font-size:.92rem;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{font-size:.74rem;padding:3px 9px;border-radius:999px;background:var(--chip);color:var(--text)}
+.tag.lab{background:var(--c);color:#fff;font-weight:600}
+.now{font-size:.68rem;background:#16a34a;color:#fff;border-radius:999px;padding:2px 8px;font-weight:700;letter-spacing:.04em}
+.card.live{outline:2px solid #16a34a;background:linear-gradient(90deg,rgba(22,163,74,.14),var(--card) 70%);box-shadow:0 0 0 4px rgba(22,163,74,.15),var(--shadow)}
+.now{animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.45}}
+.date{display:inline-block;margin-top:14px;background:#fff;color:#312e81;border-radius:14px;padding:8px 14px;font-weight:700;font-size:1.05rem}
+.date small{font-weight:500;opacity:.75;margin-left:6px}
+.card.free{--c:#98a2b3;opacity:.75;justify-content:center;text-align:center}
+.card.free .body{flex:none}
+</style>
+</head>
+<body>
+<div class="hero"><div class="in">
+<div class="inst">Rajshahi Government Survey Institute</div>
+<h1>Class Routine 2026</h1>
+<div class="chips"><span>1st Semester</span><span>Class start 11-10-2026</span><span>8:00 AM – 1:15 PM</span></div>
+<div class="date" id="date"></div>
+</div></div>
+<main>
+<div class="days" id="days"></div>
+<div class="dh"><h2 id="dt"></h2><span id="dc"></span></div>
+<div id="list"></div>
+</main>
+<script>
+var T={ANA:"Md. Anamul Haque",SR:"Md. Shahinur Rahman",ANS:"Abdur Nur Sardar",SH:"Md. Saruar Hossain",MR:"Md. Musfikur Rahman",GA:"Golam Azam"};
+var S={"21011":["Engineering Drawing","#7c3aed"],"25711":["Bangla-1","#dc2626"],"25712":["English-1","#2563eb"],"25811":["Social Science","#d97706"],"25911":["Mathematics-1","#0d9488"],"25912":["Physics-1","#db2777"],"26411":["Civil Engineering Materials","#4d7c0f"],"26711":["Basic Electricity","#ea580c"]};
+function c(p,time,code,t,room,lab){return{p:p,time:time,code:code,t:t,room:room,lab:lab}}
+var R={
+"Sunday":[c("1","8:00 – 8:45","25912","MR","2203"),c("2","8:45 – 9:30","26711","ANA","2203"),c("3","9:30 – 10:15","25712","ANS","2203"),c("4","10:15 – 11:00","25911","SH","2203"),c("5–7","11:00 – 1:15","21011","ANA","3301 & 3302","Multi.P.B")],
+"Monday":[c("1–3","8:00 – 10:15","26711","ANA","2503","Lab"),c("4","10:15 – 11:00","25911","SH","2203"),c("5–7","11:00 – 1:15","25912","MR","2403","L+P/1")],
+"Tuesday":[c("1–3","8:00 – 10:15","26411","GA","2101","Lab"),c("4","10:15 – 11:00","26711","ANA","2203"),c("5","11:00 – 11:45","25912","MR","2203"),c("6","11:45 – 12:30","25811","SR","2203"),c("7","12:30 – 1:15","25711","SR","2203")],
+"Wednesday":[c("1–2","8:00 – 9:30","21011","ANA","3301 & 3302","Multi.P.B"),c("3","9:30 – 10:15","26711","ANA","2203"),c("4","10:15 – 11:00","26411","GA","2203"),c("5","11:00 – 11:45","25911","SH","2203"),c("6","11:45 – 12:30","25711","SR","2203"),c("7","12:30 – 1:15",null)],
+"Thursday":[c("1–3","8:00 – 10:15","25911","SH","2203"),c("4","10:15 – 11:00","25811","SR","2203"),c("5","11:00 – 11:45","25912","MR","2203"),c("6","11:45 – 12:30","26411","GA","2203"),c("7","12:30 – 1:15","25712","ANS","2203")]
+};
+var names=["Sunday","Monday","Tuesday","Wednesday","Thursday"];
+var todayName,cur,mins,first=true;
+function clock(){var now=new Date();todayName=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][now.getDay()];mins=now.getHours()*60+now.getMinutes();
+  document.getElementById("date").innerHTML=now.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})+"<small>"+now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",hour12:true})+"</small>";
+  if(first){cur=R[todayName]?todayName:"Sunday";first=false}}
+function span(p){var n=p.split("–");var a=+n[0],b=+(n[1]||n[0]);return[480+45*(a-1),480+45*b]}
+var $d=document.getElementById("days"),$l=document.getElementById("list");
+function show(){
+  clock();
+  $d.innerHTML="";
+  names.forEach(function(n){var b=document.createElement("button");b.innerHTML=n.slice(0,3)+"<b>"+(names.indexOf(n)+1)+"</b>";b.className=(n===cur?"on ":"")+(n===todayName?"td":"");b.onclick=function(){cur=n;show()};$d.appendChild(b)});
+  var cls=R[cur].filter(function(x){return x.code}).length;
+  document.getElementById("dt").textContent=cur+(cur===todayName?" · Today":"");
+  document.getElementById("dc").textContent=R[todayName]?cls+" classes":"Today is "+todayName+" (no class)";
+  $l.innerHTML=R[cur].map(function(x){
+    var tm=x.time.split(" – "),sp=span(x.p),live=cur===todayName&&mins>=sp[0]&&mins<sp[1];
+    var time='<div class="time"><div class="p">Period '+x.p+'</div><div class="t">'+tm[0]+'</div><div class="t2">'+tm[1]+'</div></div>';
+    if(!x.code)return '<div class="card free">'+time+'<div class="body"><div class="name">Free period</div></div></div>';
+    var s=S[x.code],tag=x.lab?'<span class="tag lab">'+x.lab+'</span>':"";
+    return '<div class="card'+(live?' live':'')+'" style="--c:'+s[1]+'">'+time+'<div class="body"><div class="name">'+s[0]+(live?'<span class="now">NOW</span>':'')+'</div><div class="teacher">'+T[x.t]+'</div><div class="meta"><span class="tag">Room '+x.room+'</span>'+tag+'</div></div></div>';
+  }).join("");
+}
+show();
+setInterval(show,30000);
+</script>
+</body>
+</html>

@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Class Routine 2026</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#f2f4f9;--card:#fff;--text:#161a23;--muted:#667085;--line:#e4e8f0;--shadow:0 4px 16px rgba(30,50,110,.08);--chip:#eef2fb}
@@ -30,10 +34,13 @@ main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
 .dh span{color:var(--muted);font-size:.85rem}
 .card{position:relative;display:flex;gap:12px;background:var(--card);border-radius:18px;padding:14px 14px 14px 18px;margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
 .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
-.time{min-width:62px;text-align:center;border-right:1px dashed var(--line);padding-right:12px;display:flex;flex-direction:column;justify-content:center}
-.time .p{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.time .t{font-size:.95rem;font-weight:700;margin-top:2px}
-.time .t2{font-size:.75rem;color:var(--muted)}
+.time{min-width:92px;text-align:center;border-radius:14px;padding:8px 6px;background:var(--chip);background:color-mix(in srgb,var(--c) 14%,transparent);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1px}
+.time .p{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.time .t{font-size:1.15rem;font-weight:800;line-height:1.15;color:var(--c);white-space:nowrap}
+.time .t small{font-size:.65rem;font-weight:700;margin-left:2px}
+.time .to{font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.time .e{font-size:.95rem;font-weight:700;color:var(--text);white-space:nowrap}
+.time .e small{font-size:.62rem;font-weight:600;margin-left:2px}
 .body{flex:1;min-width:0}
 .name{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .teacher{margin-top:3px;font-size:.92rem;color:var(--muted)}
@@ -48,6 +55,12 @@ main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
 .date small{font-weight:500;opacity:.75;margin-left:6px}
 .card.free{--c:#98a2b3;opacity:.75;justify-content:center;text-align:center}
 .card.free .body{flex:none}
+.foot{max-width:560px;margin:8px auto 0;padding:0 16px calc(env(safe-area-inset-bottom,0px) + 28px);text-align:center}
+.foot .box{background:var(--card);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+.foot .by{font-size:.85rem;color:var(--muted)}
+.foot .by b{display:block;margin-top:3px;font-size:1.15rem;background:linear-gradient(135deg,#4f46e5,#0ea5e9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot .cp{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
+.dlb{display:inline-block;margin-top:12px;background:#0b1020;color:#fff;border-radius:14px;padding:11px 18px;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
@@ -56,12 +69,14 @@ main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
 <h1>Class Routine 2026</h1>
 <div class="chips"><span>1st Semester</span><span>Class start 11-10-2026</span><span>8:00 AM – 1:15 PM</span></div>
 <div class="date" id="date"></div>
+<div id="dl"><a class="dlb" href="Class_Routine.apk" download="Class_Routine.apk">📲 Download Android App</a></div>
 </div></div>
 <main>
 <div class="days" id="days"></div>
 <div class="dh"><h2 id="dt"></h2><span id="dc"></span></div>
 <div id="list"></div>
 </main>
+<footer class="foot" style="margin-top:14px"><div class="box"><div class="by">Created by<b>Sakib Sandman</b></div><div class="cp">© 2026 Sakib Sandman. All rights reserved.</div></div></footer>
 <script>
 var T={ANA:"Md. Anamul Haque",SR:"Md. Shahinur Rahman",ANS:"Abdur Nur Sardar",SH:"Md. Saruar Hossain",MR:"Md. Musfikur Rahman",GA:"Golam Azam"};
 var S={"21011":["Engineering Drawing","#7c3aed"],"25711":["Bangla-1","#dc2626"],"25712":["English-1","#2563eb"],"25811":["Social Science","#d97706"],"25911":["Mathematics-1","#0d9488"],"25912":["Physics-1","#db2777"],"26411":["Civil Engineering Materials","#4d7c0f"],"26711":["Basic Electricity","#ea580c"]};
@@ -74,10 +89,14 @@ var R={
 "Thursday":[c("1–3","8:00 – 10:15","25911","SH","2203"),c("4","10:15 – 11:00","25811","SR","2203"),c("5","11:00 – 11:45","25912","MR","2203"),c("6","11:45 – 12:30","26411","GA","2203"),c("7","12:30 – 1:15","25712","ANS","2203")]
 };
 var names=["Sunday","Monday","Tuesday","Wednesday","Thursday"];
-var todayName,cur,mins,first=true;
-function clock(){var now=new Date();todayName=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][now.getDay()];mins=now.getHours()*60+now.getMinutes();
-  document.getElementById("date").innerHTML=now.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})+"<small>"+now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",hour12:true})+"</small>";
-  if(first){cur=R[todayName]?todayName:"Sunday";first=false}}
+var todayName,cur,mins,isToday,lastEff,DN=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+function clock(){var now=new Date();mins=now.getHours()*60+now.getMinutes();
+  var d=new Date(now);if(mins>=795)d.setDate(d.getDate()+1);
+  while(!R[DN[d.getDay()]])d.setDate(d.getDate()+1);
+  todayName=DN[d.getDay()];isToday=d.toDateString()===now.toDateString();
+  document.getElementById("date").innerHTML=d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})+"<small>"+(isToday?"Today":"Next class day")+"</small>";
+  if(lastEff!==todayName){cur=todayName;lastEff=todayName}}
+function fm(m){var h=Math.floor(m/60),mi=m%60,ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+(mi<10?"0":"")+mi+"<small>"+ap+"</small>"}
 function span(p){var n=p.split("–");var a=+n[0],b=+(n[1]||n[0]);return[480+45*(a-1),480+45*b]}
 var $d=document.getElementById("days"),$l=document.getElementById("list");
 function show(){
@@ -85,11 +104,11 @@ function show(){
   $d.innerHTML="";
   names.forEach(function(n){var b=document.createElement("button");b.innerHTML=n.slice(0,3)+"<b>"+(names.indexOf(n)+1)+"</b>";b.className=(n===cur?"on ":"")+(n===todayName?"td":"");b.onclick=function(){cur=n;show()};$d.appendChild(b)});
   var cls=R[cur].filter(function(x){return x.code}).length;
-  document.getElementById("dt").textContent=cur+(cur===todayName?" · Today":"");
-  document.getElementById("dc").textContent=R[todayName]?cls+" classes":"Today is "+todayName+" (no class)";
+  document.getElementById("dt").textContent=cur+(cur===todayName?(isToday?" · Today":" · Next"):"");
+  document.getElementById("dc").textContent=cls+" classes";
   $l.innerHTML=R[cur].map(function(x){
-    var tm=x.time.split(" – "),sp=span(x.p),live=cur===todayName&&mins>=sp[0]&&mins<sp[1];
-    var time='<div class="time"><div class="p">Period '+x.p+'</div><div class="t">'+tm[0]+'</div><div class="t2">'+tm[1]+'</div></div>';
+    var tm=x.time.split(" – "),sp=span(x.p),live=cur===todayName&&isToday&&mins>=sp[0]&&mins<sp[1];
+    var time='<div class="time"><div class="p">Period '+x.p+'</div><div class="t">'+fm(sp[0])+'</div><div class="to">to</div><div class="e">'+fm(sp[1])+'</div></div>';
     if(!x.code)return '<div class="card free">'+time+'<div class="body"><div class="name">Free period</div></div></div>';
     var s=S[x.code],tag=x.lab?'<span class="tag lab">'+x.lab+'</span>':"";
     return '<div class="card'+(live?' live':'')+'" style="--c:'+s[1]+'">'+time+'<div class="body"><div class="name">'+s[0]+(live?'<span class="now">NOW</span>':'')+'</div><div class="teacher">'+T[x.t]+'</div><div class="meta"><span class="tag">Room '+x.room+'</span>'+tag+'</div></div></div>';
@@ -97,6 +116,8 @@ function show(){
 }
 show();
 setInterval(show,30000);
+if(window.matchMedia("(display-mode: standalone)").matches||navigator.standalone||/wv\)/.test(navigator.userAgent)){document.getElementById("dl").style.display="none"}
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
 </script>
 </body>
 </html>

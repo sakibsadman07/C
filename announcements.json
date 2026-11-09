@@ -1,18 +1,5 @@
 [
  {
-  "id": "a2",
-  "tag": "info",
-  "d": "",
-  "title": {
-   "en": "See any day's routine",
-   "bn": "যেকোনো দিনের রুটিন দেখুন"
-  },
-  "body": {
-   "en": "Open the Calendar tab and tap a date to see that day's classes.",
-   "bn": "ক্যালেন্ডার ট্যাব খুলে যেকোনো তারিখে ট্যাপ করলে সেই দিনের ক্লাস দেখা যাবে।"
-  }
- },
- {
   "id": "a3",
   "tag": "upd",
   "d": "",

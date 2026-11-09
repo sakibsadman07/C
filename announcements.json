@@ -1,0 +1,42 @@
+[
+ {
+  "id": "a1",
+  "pin": 1,
+  "tag": "imp",
+  "d": "",
+  "title": {
+   "en": "Class hours",
+   "bn": "ক্লাসের সময়"
+  },
+  "body": {
+   "en": "Sunday to Thursday, 8:00 AM – 1:15 PM (7 periods of 45 minutes each). Friday and Saturday are off.",
+   "bn": "রবিবার থেকে বৃহস্পতিবার, সকাল ৮:০০ – দুপুর ১:১৫ (৭টি পিরিয়ড, প্রতিটি ৪৫ মিনিট)। শুক্র ও শনিবার ছুটি।"
+  }
+ },
+ {
+  "id": "a2",
+  "tag": "info",
+  "d": "",
+  "title": {
+   "en": "See any day's routine",
+   "bn": "যেকোনো দিনের রুটিন দেখুন"
+  },
+  "body": {
+   "en": "Open the Calendar tab and tap a date to see that day's classes.",
+   "bn": "ক্যালেন্ডার ট্যাব খুলে যেকোনো তারিখে ট্যাপ করলে সেই দিনের ক্লাস দেখা যাবে।"
+  }
+ },
+ {
+  "id": "a3",
+  "tag": "upd",
+  "d": "",
+  "title": {
+   "en": "Stay updated",
+   "bn": "আপডেট পেতে"
+  },
+  "body": {
+   "en": "New notices from the institute will appear on this page. Check back regularly.",
+   "bn": "ইনস্টিটিউটের নতুন নোটিশ এই পেজে দেখানো হবে। নিয়মিত দেখুন।"
+  }
+ }
+]

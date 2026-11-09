@@ -1,19 +1,5 @@
 [
  {
-  "id": "a1",
-  "pin": 1,
-  "tag": "imp",
-  "d": "",
-  "title": {
-   "en": "Class hours",
-   "bn": "ক্লাসের সময়"
-  },
-  "body": {
-   "en": "Sunday to Thursday, 8:00 AM – 1:15 PM (7 periods of 45 minutes each). Friday and Saturday are off.",
-   "bn": "রবিবার থেকে বৃহস্পতিবার, সকাল ৮:০০ – দুপুর ১:১৫ (৭টি পিরিয়ড, প্রতিটি ৪৫ মিনিট)। শুক্র ও শনিবার ছুটি।"
-  }
- },
- {
   "id": "a2",
   "tag": "info",
   "d": "",

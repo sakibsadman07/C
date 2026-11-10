@@ -276,7 +276,7 @@ html.lite .card{transition:none}
 </main>
 <footer class="foot" style="margin-top:14px"><div class="box"><div class="tools"><button class="admlink" id="admlink" data-i18n="a_link">🔐 Admin</button><button class="admlink" id="perfbtn"></button></div><div class="by"><span data-i18n="by">Created by</span><b>Sakib Sadman</b><a class="ct" href="https://sakibsadman.xyz/" target="_blank" rel="noopener"><span data-i18n="contact">Contact:</span> sakibsadman.xyz</a></div><div class="cp" data-i18n="cp">© 2026 Sakib Sadman. All rights reserved.</div></div></footer>
 <div class="offl" id="offl" hidden data-i18n="off_msg">📴 Offline — showing saved data</div>
-<div class="annpage" id="adm" aria-hidden="true" role="dialog"><div class="annhead"><button id="admback" aria-label="Close">×</button><h2 data-i18n="a_title">Admin</h2><span class="ver">v13</span></div><div class="annbody" id="admbody"></div></div>
+<div class="annpage" id="adm" aria-hidden="true" role="dialog"><div class="annhead"><button id="admback" aria-label="Close">×</button><h2 data-i18n="a_title">Admin</h2><span class="ver">v14</span></div><div class="annbody" id="admbody"></div></div>
 <div class="lb" id="lb"><img alt=""></div>
 <script>
 var T={ANA:"Md. Anamul Haque",SR:"Md. Shahinur Rahman",ANS:"Abdur Nur Sardar",SH:"Md. Saruar Hossain",MR:"Md. Musfikur Rahman",GA:"Golam Azam"};
@@ -445,11 +445,7 @@ function swipe(el,fn){var sx=0,sy=0;
 swipe($vr,function(s){var i=names.indexOf(cur)+s;if(i>=0&&i<names.length)go(names[i])});
 swipe($vc,function(s){mon(s)});
 /* ----- announcements ----- */
-var ANN=[
-{id:"a1",pin:1,tag:"imp",d:"",title:{en:"Class hours",bn:"ক্লাসের সময়"},body:{en:"Sunday to Thursday, 8:00 AM – 1:15 PM (7 periods of 45 minutes each). Friday and Saturday are off.",bn:"রবিবার থেকে বৃহস্পতিবার, সকাল ৮:০০ – দুপুর ১:১৫ (৭টি পিরিয়ড, প্রতিটি ৪৫ মিনিট)। শুক্র ও শনিবার ছুটি।"}},
-{id:"a2",tag:"info",d:"",title:{en:"See any day's routine",bn:"যেকোনো দিনের রুটিন দেখুন"},body:{en:"Open the Calendar tab and tap a date to see that day's classes.",bn:"ক্যালেন্ডার ট্যাব খুলে যেকোনো তারিখে ট্যাপ করলে সেই দিনের ক্লাস দেখা যাবে।"}},
-{id:"a3",tag:"upd",d:"",title:{en:"Stay updated",bn:"আপডেট পেতে"},body:{en:"New notices from the institute will appear on this page. Check back regularly.",bn:"ইনস্টিটিউটের নতুন নোটিশ এই পেজে দেখানো হবে। নিয়মিত দেখুন।"}}
-];
+var ANN=[],annLoaded=false;
 var $al=document.getElementById("annlist"),$tb=document.getElementById("tabbadge"),$adm=document.getElementById("adm"),$admb=document.getElementById("admbody"),$lb=document.getElementById("lb"),annNew=[],C=null,GH_REPO="sakibsadman07/Testclass";
 function tx(v){return typeof v==="string"?v:(v&&(v[LANG]||v.en))||""}
 function esc(x){return String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
@@ -463,22 +459,26 @@ function renderAnn(){
   var list=ANN.slice().sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)});
   var h=list.length?list.map(function(a,i){var dt="";if(a.d){var p=a.d.split("-");dt='<span class="dt">'+fmtDate(new Date(+p[0],p[1]-1,+p[2]),{day:"numeric",month:"short",year:"numeric"})+'</span>'}
     var src=a._data||imgUrl(a.img),title=tx(a.title),body=tx(a.body);
-    return '<article class="ann'+(annNew.indexOf(a.id)>=0?' new':'')+'" style="--ac:'+(CL[a.tag]||CL.info)+';--i:'+i+'"><div class="row"><span class="tg">'+(a.pin?"📌 ":"")+t("tg_"+(CL[a.tag]?a.tag:"info"))+'</span>'+dt+'</div>'+(title?'<h3>'+esc(title)+'</h3>':'')+(body?'<p>'+esc(body).replace(/\n/g,"<br>")+'</p>':'')+(src?'<img class="aimg" loading="lazy" alt="" src="'+esc(src)+'">':'')+'</article>'}).join(""):'<div class="empty"><b>📭</b><span>'+t("annempty")+'</span></div>';
+    return '<article class="ann'+(annNew.indexOf(a.id)>=0?' new':'')+'" style="--ac:'+(CL[a.tag]||CL.info)+';--i:'+i+'"><div class="row"><span class="tg">'+(a.pin?"📌 ":"")+t("tg_"+(CL[a.tag]?a.tag:"info"))+'</span>'+dt+'</div>'+(title?'<h3>'+esc(title)+'</h3>':'')+(body?'<p>'+esc(body).replace(/\n/g,"<br>")+'</p>':'')+(src?'<img class="aimg" loading="lazy" alt="" src="'+esc(src)+'">':'')+'</article>'}).join(""):(annLoaded?'<div class="empty"><b>📭</b><span>'+t("annempty")+'</span></div>':"");
   setHTML($al,h)}
 function rawBase(){var r=GH_REPO||guessRepo();return r?"https://raw.githubusercontent.com/"+r+"/HEAD/":""}
 function imgUrl(p){if(!p||String(p).indexOf("notice-img/")!==0)return"";var b=rawBase();return b?b+p:p}
-function pendList(){try{var n=Date.now();return JSON.parse(localStorage.getItem("annPend")||"[]").filter(function(x){return n-x.t<900000})}catch(e){return[]}}
-function goneMap(){try{var n=Date.now(),o=JSON.parse(localStorage.getItem("annGone")||"{}"),r={};for(var k in o)if(n-o[k]<900000)r[k]=o[k];return r}catch(e){return{}}}
-function fetchAnn(urls){if(!urls.length)return Promise.reject();return fetch(urls[0],{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(l){if(!Array.isArray(l))throw 0;return l}).catch(function(){return fetchAnn(urls.slice(1))})}
+function normA(j){return Array.isArray(j)?{rev:0,items:j}:{rev:+(j&&j.rev)||0,items:Array.isArray(j&&j.items)?j.items:[]}}
+function getA(url){return fetch(url,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(normA).catch(function(){return null})}
 function loadAnn(){
-  var u=[],b=rawBase(),t=Date.now();if(b)u.push(b+"announcements.json?t="+t);u.push("announcements.json?t="+t);
-  fetchAnn(u).then(function(l){
-    try{localStorage.setItem("annCache",JSON.stringify(l))}catch(e){}
-    var g=goneMap(),keep={};ANN.forEach(function(x){if(x._data)keep[x.id]=x._data});
-    l=l.filter(function(x){return !g[x.id]});
-    pendList().forEach(function(p){if(!l.some(function(x){return x.id===p.a.id}))l.unshift(p.a)});
-    l.forEach(function(x){if(keep[x.id])x._data=keep[x.id]});
-    ANN=l;renderAnn();badge();if($adm.classList.contains("on")&&C)renderMine()}).catch(function(){})}
+  var t0=Date.now(),b=rawBase(),us=[];
+  if(b)us.push(b+"announcements.json?t="+t0+"&r="+Math.random().toString(36).slice(2));
+  us.push("announcements.json?t="+t0);
+  Promise.all(us.map(getA)).then(function(rs){
+    annLoaded=true;
+    var best=null;rs.forEach(function(x){if(x&&(!best||x.rev>best.rev))best=x});
+    if(!best){renderAnn();return}
+    var cur=0;try{cur=+localStorage.getItem("annRev")||0}catch(e){}
+    if(best.rev<cur){renderAnn();return}
+    try{localStorage.setItem("annRev",String(best.rev));localStorage.setItem("annCache",JSON.stringify(best.items))}catch(e){}
+    var keep={};ANN.forEach(function(x){if(x._data)keep[x.id]=x._data});
+    best.items.forEach(function(x){if(keep[x.id])x._data=keep[x.id]});
+    ANN=best.items;renderAnn();badge();if($adm.classList.contains("on")&&C)renderMine()}).catch(function(){annLoaded=true;renderAnn()})}
 try{var _c=JSON.parse(localStorage.getItem("annCache")||"null");if(Array.isArray(_c))ANN=_c}catch(e){}
 document.addEventListener("click",function(e){var im=e.target.closest&&e.target.closest(".aimg");if(im){$lb.querySelector("img").src=im.src;$lb.classList.add("on")}});
 $lb.onclick=function(){$lb.classList.remove("on")};
@@ -487,8 +487,8 @@ function gh(path,o){o=o||{};var hd={"Authorization":"Bearer "+C.token,"Accept":"
   return fetch("https://api.github.com/repos/"+C.repo+path,{method:o.method||"GET",headers:hd,body:o.body?JSON.stringify(o.body):undefined,cache:"no-store"}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok){var e=new Error(j.message||("HTTP "+r.status));e.status=r.status;throw e}return j})})}
 function b64u(str){var b=new TextEncoder().encode(str),s="";for(var i=0;i<b.length;i+=8192)s+=String.fromCharCode.apply(null,b.subarray(i,i+8192));return btoa(s)}
 function unb64u(x){var s=atob(x.replace(/\s/g,"")),a=new Uint8Array(s.length);for(var i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return new TextDecoder().decode(a)}
-function getRemote(){return gh("/contents/announcements.json?ref="+encodeURIComponent(C.branch)).then(function(j){return{sha:j.sha,list:JSON.parse(unb64u(j.content))}}).catch(function(e){if(e.status===404)return{sha:null,list:[]};throw e})}
-function upd(fn,msg,retry){return getRemote().then(function(r){var nl=fn(r.list),body={message:msg,content:b64u(JSON.stringify(nl,null,1)),branch:C.branch};if(r.sha)body.sha=r.sha;return gh("/contents/announcements.json",{method:"PUT",body:body}).then(function(){return nl})}).catch(function(e){if((e.status===409||e.status===422)&&!retry)return upd(fn,msg,1);throw e})}
+function getRemote(){return gh("/contents/announcements.json?ref="+encodeURIComponent(C.branch)).then(function(j){var a=normA(JSON.parse(unb64u(j.content)));return{sha:j.sha,list:a.items,rev:a.rev}}).catch(function(e){if(e.status===404)return{sha:null,list:[],rev:0};throw e})}
+function upd(fn,msg,retry){return getRemote().then(function(r){var nl=fn(r.list),rev=Math.max(Date.now(),r.rev+1),body={message:msg,content:b64u(JSON.stringify({rev:rev,items:nl},null,1)),branch:C.branch};if(r.sha)body.sha=r.sha;return gh("/contents/announcements.json",{method:"PUT",body:body}).then(function(){try{localStorage.setItem("annRev",String(rev))}catch(e){}return nl})}).catch(function(e){if((e.status===409||e.status===422)&&!retry)return upd(fn,msg,1);throw e})}
 function toB(u){var s="";for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s)}
 function fromB(b){var s=atob(b),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u}
 function kdf(pass,salt){if(!window.crypto||!crypto.subtle)return Promise.reject(new Error(t("a_nocrypto")));return crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]).then(function(k){return crypto.subtle.deriveKey({name:"PBKDF2",salt:salt,iterations:200000,hash:"SHA-256"},k,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])})}
@@ -553,7 +553,7 @@ function publish(){
   if(data){a.img="notice-img/"+id+".jpg";p=gh("/contents/"+a.img,{method:"PUT",body:{message:"Add notice image",content:data.split(",")[1],branch:C.branch}})}
   p.then(function(){return upd(function(l){l.unshift(a);return l},"Add announcement")}).then(function(nl){
     try{localStorage.setItem("annCache",JSON.stringify(nl))}catch(e){}
-    var mine=nl.filter(function(x){return x.id===id})[0];if(mine&&data)mine._data=data;if(mine){var rec=JSON.parse(JSON.stringify(mine));delete rec._data;try{localStorage.setItem("annPend",JSON.stringify(pendList().concat([{a:rec,t:Date.now()}])))}catch(e){}}
+    var mine=nl.filter(function(x){return x.id===id})[0];if(mine&&data)mine._data=data;
     ANN=nl;renderAnn();badge();renderMine();
     $i("f_t").value="";$i("f_b").value="";$i("f_p").checked=false;$i("f_f").value="";$i("f_prev").hidden=true;pendingImg=null;msg(m,t("a_pubok"),1)
   }).catch(function(e){msg(m,errMsg(e))}).then(function(){busy(btn,false,old)})}
@@ -561,7 +561,7 @@ function delAnn(id){
   if(!confirm(t("a_delq")))return;
   var item=ANN.filter(function(x){return x.id===id})[0],m=$i("f_m");
   upd(function(l){return l.filter(function(x){return x.id!==id})},"Delete announcement").then(function(nl){
-    try{var gm=goneMap();gm[id]=Date.now();localStorage.setItem("annGone",JSON.stringify(gm));localStorage.setItem("annPend",JSON.stringify(pendList().filter(function(x){return x.a.id!==id})))}catch(e){}
+    
     try{localStorage.setItem("annCache",JSON.stringify(nl))}catch(e){}
     ANN=nl;renderAnn();badge();renderMine();if(m)msg(m,t("a_delok"),1);
     if(item&&item.img&&String(item.img).indexOf("notice-img/")===0){gh("/contents/"+item.img+"?ref="+encodeURIComponent(C.branch)).then(function(j){return gh("/contents/"+item.img,{method:"DELETE",body:{message:"Delete notice image",sha:j.sha,branch:C.branch}})}).catch(function(){})}

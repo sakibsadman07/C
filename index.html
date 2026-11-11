@@ -184,7 +184,7 @@ html[lang=bn] h1{line-height:1.3}
 .ann h3{margin:0 0 6px;font-size:1.05rem}
 .ann p{margin:0;font-size:.93rem;line-height:1.55;color:var(--text);opacity:.82}
 .annpage.in .ann,.annpage.in .empty{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms + 180ms)}
-.seg button em{position:absolute;top:3px;right:6px;font-style:normal;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#ef4444;color:#fff;font-size:.62rem;display:grid;place-items:center;box-shadow:0 0 0 2px rgba(239,68,68,.25)}
+.seg button em{position:absolute;top:-3px;right:0;font-style:normal;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#ef4444;color:#fff;font-size:.62rem;display:grid;place-items:center;box-shadow:0 0 0 2px rgba(239,68,68,.25)}
 .seg button em[hidden]{display:none}
 .view .ann{-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
 .enter .ann{animation:rise .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms + 80ms)}
@@ -245,6 +245,26 @@ html.lite .card{transition:none}
 .ct span{color:var(--muted);font-weight:500}
 .offl{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);z-index:70;padding:9px 16px;border-radius:999px;background:rgba(17,24,39,.94);color:#fff;font-size:.82rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.35);white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
 .offl[hidden]{display:none}
+
+.seg button{font-size:.76rem!important;padding:10px 2px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag.warn{background:#ef4444;color:#fff;font-weight:600}
+.cell.exam::before{content:"";position:absolute;top:4px;left:5px;width:7px;height:7px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.25)}
+.atabs{display:flex;gap:6px;margin-bottom:14px}
+.atabs button{flex:1;padding:11px 4px;border-radius:14px;border:1px solid var(--gb);background:var(--card);color:var(--muted);font-weight:700;font-size:.85rem;cursor:pointer;transition:background .25s,color .25s,transform .2s}
+.atabs button:active{transform:scale(.95)}
+.atabs button.on{background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;border-color:transparent}
+.dchips{display:flex;gap:6px;margin:10px 0}
+.dchips button{flex:1;padding:9px 0;border-radius:12px;border:1px solid var(--gb);background:var(--chip);color:var(--text);font-weight:700;font-size:.8rem;cursor:pointer;transition:background .25s,color .25s}
+.dchips button.on{background:#4f46e5;color:#fff;border-color:transparent}
+.rrow{padding:10px 0;border-top:1px solid var(--line)}
+.rr1,.rr2{display:flex;gap:6px;align-items:center}
+.rr2{margin-top:6px}
+.rrow select,.rrow input:not([type=color]){margin-top:0!important;padding:10px 8px!important;font-size:14px!important;min-width:0;width:auto!important}
+.rrow select.grow,.rr2 input{flex:1}
+.rrow input[type=color]{width:44px!important;height:40px;padding:2px!important;margin:0!important;border-radius:10px;border:1px solid var(--gb);background:var(--chip);flex:none}
+.rrow button[data-del]{width:38px;height:38px;border-radius:12px;border:1px solid var(--gb);background:var(--chip);cursor:pointer;flex:none}
+.rrow .nm{flex:1}
+details.acard summary{cursor:pointer;font-weight:800;font-size:1rem;margin-bottom:4px}
 </style>
 </head>
 <body class="load">
@@ -257,7 +277,7 @@ html.lite .card{transition:none}
 <div class="acts"><div id="dl"><a class="dlb" href="Class_Routine.apk" download="Class_Routine.apk" data-i18n="dl">📲 Download Android App</a></div><div class="lsw" id="lsw"><i class="ind"></i><button data-l="en">EN</button><button data-l="bn">বাংলা</button></div></div>
 </div></div>
 <main>
-<div class="seg" id="seg"><i class="ind"></i><button data-v="r" class="on" data-i18n="rt">📚 Routine</button><button data-v="c" data-i18n="cal">📅 Calendar</button><button data-v="a"><span data-i18n="anntab">📢 Notices</span><em id="tabbadge" hidden></em></button></div>
+<div class="seg" id="seg"><i class="ind"></i><button data-v="r" class="on" data-i18n="rt">📚 Routine</button><button data-v="c" data-i18n="cal">📅 Calendar</button><button data-v="e" data-i18n="examtab">📝 Exams</button><button data-v="a"><span data-i18n="anntab">📢 Notices</span><em id="tabbadge" hidden></em></button></div>
 <section class="view on" id="vr">
 <div class="days" id="days"></div>
 <div id="cd"></div>
@@ -268,15 +288,16 @@ html.lite .card{transition:none}
 <div class="calhead"><button id="mprev" aria-label="Previous month">‹</button><div class="mt" id="mt"></div><button class="tdy" id="mtoday" data-i18n="today">Today</button><button id="mnext" aria-label="Next month">›</button></div>
 <div class="wk" id="wk"></div>
 <div class="grid" id="grid"></div>
-<div class="hint" data-i18n="hint">Tap a date to see its routine · ★ first class day</div>
+<div class="hint" data-i18n="hint">Tap a date to see its routine · ★ first class day · 🔴 exam</div>
 </div>
 <div id="cw"><div class="dh"><h2 id="ct"></h2><span id="cc"></span></div><div id="clist"></div></div>
 </section>
+<section class="view" id="ve"><div class="dh"><h2 data-i18n="examtitle">Exam schedule</h2><span id="exc"></span></div><div id="exlist"></div></section>
 <section class="view" id="va"><div id="annlist"></div></section>
 </main>
 <footer class="foot" style="margin-top:14px"><div class="box"><div class="tools"><button class="admlink" id="admlink" data-i18n="a_link">🔐 Admin</button><button class="admlink" id="perfbtn"></button></div><div class="by"><span data-i18n="by">Created by</span><b>Sakib Sadman</b><a class="ct" href="https://sakibsadman.xyz/" target="_blank" rel="noopener"><span data-i18n="contact">Contact:</span> sakibsadman.xyz</a></div><div class="cp" data-i18n="cp">© 2026 Sakib Sadman. All rights reserved.</div></div></footer>
 <div class="offl" id="offl" hidden data-i18n="off_msg">📴 Offline — showing saved data</div>
-<div class="annpage" id="adm" aria-hidden="true" role="dialog"><div class="annhead"><button id="admback" aria-label="Close">×</button><h2 data-i18n="a_title">Admin</h2><span class="ver">v14</span></div><div class="annbody" id="admbody"></div></div>
+<div class="annpage" id="adm" aria-hidden="true" role="dialog"><div class="annhead"><button id="admback" aria-label="Close">×</button><h2 data-i18n="a_title">Admin</h2><span class="ver">v15</span></div><div class="annbody" id="admbody"></div></div>
 <div class="lb" id="lb"><img alt=""></div>
 <script>
 var T={ANA:"Md. Anamul Haque",SR:"Md. Shahinur Rahman",ANS:"Abdur Nur Sardar",SH:"Md. Saruar Hossain",MR:"Md. Musfikur Rahman",GA:"Golam Azam"};
@@ -294,8 +315,8 @@ var todayName,cur,mins,isToday,lastEff,nowD,effD,DN=["Sunday","Monday","Tuesday"
 var LANG="en";
 (function(){var l="";try{l=localStorage.getItem("lang")||""}catch(e){}LANG=(l==="bn"||l==="en")?l:((navigator.language||"").toLowerCase().indexOf("bn")===0?"bn":"en")})();
 var I={
-en:{inst:"Rajshahi Government Survey Institute",title:"Class Routine 2026",c1:"1st Semester",c2:"Class start 11-10-2026",c3:"8:00 AM – 1:15 PM",dl:"📲 Download Android App",rt:"📚 Routine",cal:"📅 Calendar",today:"Today",nextlbl:"Next",nextday:"Next class day",hint:"Tap a date to see its routine · ★ first class day",by:"Created by",cp:"© 2026 Sakib Sadman. All rights reserved.",period:"Period",to:"to",room:"Room",free:"Free period",now:"NOW",fin:"Finished",clsnow:"Class now",nextcls:"Next class",alldone:"All classes finished",wkd:"Weekend",wkdmsg:"No classes on Friday &amp; Saturday",nostart:"Classes not started yet",firstcls:"First class: ",notstarted:"Not started",firstday:"First day",lab:"Lab",prevm:"Previous month",nextm:"Next month",annbtn:"Announcements",anntitle:"Announcements",annempty:"No announcements yet",back:"Back",tg_imp:"Important",tg_info:"Info",tg_upd:"Update",anntab:"📢 Notices",a_link:"🔐 Admin",a_title:"Admin",a_setup:"One-time setup",a_setup_p:"Connect this device to your GitHub repo. Your token is stored only on this device, locked with your password.",a_how:"How do I get a token?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li><li>Repository access: Only select repositories → choose this site's repo.</li><li>Permissions → Repository permissions → Contents: Read and write.</li><li>Generate, copy the token and paste it below.</li>",a_token:"GitHub token",a_repo:"Repository (owner/name)",a_branch:"Branch",a_pass:"Admin password",a_pass2:"Confirm password",a_save:"Save & continue",a_err_fields:"Enter the token and a repo like username/repo.",a_pass_short:"Password must be at least 6 characters.",a_pass_mm:"Passwords don't match.",a_err_token:"GitHub refused. Check the token, repo name and that it has Contents: Read and write.",a_nocrypto:"Secure storage is not available here. Open the live https site.",a_unlock_p:"Enter your admin password.",a_unlock:"Unlock",a_wrong:"Wrong password.",a_reset:"Reset setup",a_resetq:"Forget the saved token on this device?",a_new:"New announcement",a_ftitle:"Title",a_fbody:"Message",a_ftype:"Type",a_pin:"Pin to top",a_photo:"📷 Add photo",a_pub:"Publish",a_pubing:"Publishing…",a_pubok:"Published! Everyone will see it in about a minute.",a_need:"Write a title or a message first.",a_mine:"Posted announcements",a_del:"Delete",a_delq:"Delete this announcement?",a_lock:"Lock",a_delok:"Deleted. It disappears for everyone in about a minute.",a_e401:"Token is invalid or expired. Reset setup and paste a new token.",a_e403:"This token can't write to the repo. Create a new token: choose 'Only select repositories' (NOT 'Public repositories'), pick this repo, and set Contents: Read and write.",a_e404:"Repo or branch not found, or the token has no access to this repo. Check the repo name and branch (main or master).",a_e422:"GitHub rejected the change. Check the branch name.",contact:"Contact:",p_auto:"⚡ Performance: Auto",p_lite:"⚡ Performance: Lite",p_full:"⚡ Performance: Full",off_msg:"📴 Offline — showing saved data"},
-bn:{inst:"রাজশাহী সরকারি জরিপ ইনস্টিটিউট",title:"ক্লাস রুটিন ২০২৬",c1:"১ম সেমিস্টার",c2:"ক্লাস শুরু ১১-১০-২০২৬",c3:"সকাল ৮:০০ – দুপুর ১:১৫",dl:"📲 অ্যান্ড্রয়েড অ্যাপ ডাউনলোড",rt:"📚 রুটিন",cal:"📅 ক্যালেন্ডার",today:"আজ",nextlbl:"পরবর্তী",nextday:"পরবর্তী ক্লাসের দিন",hint:"তারিখে ট্যাপ করে রুটিন দেখুন · ★ প্রথম ক্লাসের দিন",by:"তৈরি করেছেন",cp:"© ২০২৬ Sakib Sadman. সর্বস্বত্ব সংরক্ষিত।",period:"পিরিয়ড",to:"থেকে",room:"রুম",free:"ফাঁকা পিরিয়ড",now:"এখন",fin:"শেষ",clsnow:"এখন ক্লাস চলছে",nextcls:"পরবর্তী ক্লাস",alldone:"আজকের সব ক্লাস শেষ",wkd:"সাপ্তাহিক ছুটি",wkdmsg:"শুক্র ও শনিবার ক্লাস নেই",nostart:"ক্লাস এখনো শুরু হয়নি",firstcls:"প্রথম ক্লাস: ",notstarted:"শুরু হয়নি",firstday:"প্রথম দিন",lab:"ল্যাব",prevm:"আগের মাস",nextm:"পরের মাস",annbtn:"ঘোষণা",anntitle:"ঘোষণা",annempty:"এখনো কোনো ঘোষণা নেই",back:"ফিরে যান",tg_imp:"গুরুত্বপূর্ণ",tg_info:"তথ্য",tg_upd:"আপডেট",anntab:"📢 ঘোষণা",a_link:"🔐 অ্যাডমিন",a_title:"অ্যাডমিন",a_setup:"একবারের সেটআপ",a_setup_p:"এই ডিভাইসকে আপনার GitHub রিপোর সাথে যুক্ত করুন। টোকেন শুধু এই ডিভাইসে, আপনার পাসওয়ার্ড দিয়ে লক করা থাকবে।",a_how:"টোকেন কীভাবে পাবো?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token।</li><li>Repository access: Only select repositories → এই সাইটের রিপো বেছে নিন।</li><li>Permissions → Repository permissions → Contents: Read and write।</li><li>Generate করে টোকেন কপি করে নিচে পেস্ট করুন।</li>",a_token:"GitHub টোকেন",a_repo:"রিপোজিটরি (owner/name)",a_branch:"ব্রাঞ্চ",a_pass:"অ্যাডমিন পাসওয়ার্ড",a_pass2:"পাসওয়ার্ড আবার দিন",a_save:"সেভ করে এগিয়ে যান",a_err_fields:"টোকেন এবং username/repo ফরম্যাটে রিপো লিখুন।",a_pass_short:"পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",a_pass_mm:"পাসওয়ার্ড মেলেনি।",a_err_token:"GitHub গ্রহণ করেনি। টোকেন, রিপোর নাম এবং Contents: Read and write অনুমতি দেখুন।",a_nocrypto:"এখানে নিরাপদ স্টোরেজ চলছে না। লাইভ https সাইট খুলুন।",a_unlock_p:"অ্যাডমিন পাসওয়ার্ড দিন।",a_unlock:"আনলক",a_wrong:"ভুল পাসওয়ার্ড।",a_reset:"সেটআপ রিসেট",a_resetq:"এই ডিভাইসে সেভ করা টোকেন মুছে ফেলবেন?",a_new:"নতুন ঘোষণা",a_ftitle:"শিরোনাম",a_fbody:"বার্তা",a_ftype:"ধরন",a_pin:"উপরে পিন করুন",a_photo:"📷 ছবি যোগ করুন",a_pub:"প্রকাশ করুন",a_pubing:"প্রকাশ হচ্ছে…",a_pubok:"প্রকাশ হয়েছে! প্রায় এক মিনিটের মধ্যে সবাই দেখতে পাবে।",a_need:"আগে শিরোনাম বা বার্তা লিখুন।",a_mine:"প্রকাশিত ঘোষণা",a_del:"মুছুন",a_delq:"এই ঘোষণা মুছে ফেলবেন?",a_lock:"লক করুন",a_delok:"মুছে ফেলা হয়েছে। প্রায় এক মিনিটে সবার কাছ থেকে সরে যাবে।",a_e401:"টোকেন ভুল বা মেয়াদোত্তীর্ণ। সেটআপ রিসেট করে নতুন টোকেন দিন।",a_e403:"এই টোকেন দিয়ে রিপোতে লেখা যাচ্ছে না। নতুন টোকেন বানান: 'Only select repositories' বেছে নিন ('Public repositories' নয়), এই রিপো দিন এবং Contents: Read and write করুন।",a_e404:"রিপো বা ব্রাঞ্চ পাওয়া যায়নি, অথবা টোকেনের এই রিপোতে অ্যাক্সেস নেই। রিপোর নাম ও ব্রাঞ্চ (main বা master) দেখুন।",a_e422:"GitHub পরিবর্তনটি নেয়নি। ব্রাঞ্চের নাম দেখুন।",contact:"যোগাযোগ:",p_auto:"⚡ পারফরম্যান্স: অটো",p_lite:"⚡ পারফরম্যান্স: লাইট",p_full:"⚡ পারফরম্যান্স: ফুল",off_msg:"📴 অফলাইন — সংরক্ষিত তথ্য দেখানো হচ্ছে"}};
+en:{inst:"Rajshahi Government Survey Institute",title:"Class Routine 2026",c1:"1st Semester",c2:"Class start 11-10-2026",c3:"8:00 AM – 1:15 PM",dl:"📲 Download Android App",rt:"📚 Routine",cal:"📅 Calendar",today:"Today",nextlbl:"Next",nextday:"Next class day",hint:"Tap a date to see its routine · ★ first class day · 🔴 exam",by:"Created by",cp:"© 2026 Sakib Sadman. All rights reserved.",period:"Period",to:"to",room:"Room",free:"Free period",now:"NOW",fin:"Finished",clsnow:"Class now",nextcls:"Next class",alldone:"All classes finished",wkd:"Weekend",wkdmsg:"No classes on Friday &amp; Saturday",nostart:"Classes not started yet",firstcls:"First class: ",notstarted:"Not started",firstday:"First day",lab:"Lab",prevm:"Previous month",nextm:"Next month",annbtn:"Announcements",anntitle:"Announcements",annempty:"No announcements yet",back:"Back",tg_imp:"Important",tg_info:"Info",tg_upd:"Update",anntab:"📢 Notices",a_link:"🔐 Admin",a_title:"Admin",a_setup:"One-time setup",a_setup_p:"Connect this device to your GitHub repo. Your token is stored only on this device, locked with your password.",a_how:"How do I get a token?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li><li>Repository access: Only select repositories → choose this site's repo.</li><li>Permissions → Repository permissions → Contents: Read and write.</li><li>Generate, copy the token and paste it below.</li>",a_token:"GitHub token",a_repo:"Repository (owner/name)",a_branch:"Branch",a_pass:"Admin password",a_pass2:"Confirm password",a_save:"Save & continue",a_err_fields:"Enter the token and a repo like username/repo.",a_pass_short:"Password must be at least 6 characters.",a_pass_mm:"Passwords don't match.",a_err_token:"GitHub refused. Check the token, repo name and that it has Contents: Read and write.",a_nocrypto:"Secure storage is not available here. Open the live https site.",a_unlock_p:"Enter your admin password.",a_unlock:"Unlock",a_wrong:"Wrong password.",a_reset:"Reset setup",a_resetq:"Forget the saved token on this device?",a_new:"New announcement",a_ftitle:"Title",a_fbody:"Message",a_ftype:"Type",a_pin:"Pin to top",a_photo:"📷 Add photo",a_pub:"Publish",a_pubing:"Publishing…",a_pubok:"Published! Everyone will see it in about a minute.",a_need:"Write a title or a message first.",a_mine:"Posted announcements",a_del:"Delete",a_delq:"Delete this announcement?",a_lock:"Lock",a_delok:"Deleted. It disappears for everyone in about a minute.",a_e401:"Token is invalid or expired. Reset setup and paste a new token.",a_e403:"This token can't write to the repo. Create a new token: choose 'Only select repositories' (NOT 'Public repositories'), pick this repo, and set Contents: Read and write.",a_e404:"Repo or branch not found, or the token has no access to this repo. Check the repo name and branch (main or master).",a_e422:"GitHub rejected the change. Check the branch name.",contact:"Contact:",p_auto:"⚡ Performance: Auto",p_lite:"⚡ Performance: Lite",p_full:"⚡ Performance: Full",off_msg:"📴 Offline — showing saved data",examtab:"📝 Exams",examtitle:"Exam schedule",exempty:"No exams posted yet",tomorrow:"Tomorrow",a_t_n:"📢 Notice",a_t_e:"📝 Exam",a_t_r:"📚 Routine",a_xnew:"New exam",a_xtitle:"Exam name (e.g. Mid Term)",a_xsubj:"Subject",a_xother:"Or type another subject",a_xdate:"Date",a_xstart:"Start time",a_xend:"End time",a_xroom:"Room",a_xnote:"Note",a_xneed:"Pick a date and a subject or name.",a_xlist:"Posted exams",a_xdelq:"Delete this exam?",a_rt:"Edit routine",a_rhelp:"Pick a day, edit its periods, then press Publish. Each period is 45 minutes, starting at 8:00.",a_radd:"Add period",a_rnone:"No periods for this day.",a_rsub:"Subjects",a_rsadd:"Add subject",a_rtea:"Teachers",a_rtadd:"Add teacher",a_rpub:"Publish routine",a_roverlap:"Periods overlap",a_rok:"Routine published! Everyone will see it soon.",a_rsdelq:"This subject is used in the routine. Remove it and make those periods free?",a_rname:"Name",a_rlab:"Lab / note"},
+bn:{inst:"রাজশাহী সরকারি জরিপ ইনস্টিটিউট",title:"ক্লাস রুটিন ২০২৬",c1:"১ম সেমিস্টার",c2:"ক্লাস শুরু ১১-১০-২০২৬",c3:"সকাল ৮:০০ – দুপুর ১:১৫",dl:"📲 অ্যান্ড্রয়েড অ্যাপ ডাউনলোড",rt:"📚 রুটিন",cal:"📅 ক্যালেন্ডার",today:"আজ",nextlbl:"পরবর্তী",nextday:"পরবর্তী ক্লাসের দিন",hint:"তারিখে ট্যাপ করে রুটিন দেখুন · ★ প্রথম ক্লাসের দিন · 🔴 পরীক্ষা",by:"তৈরি করেছেন",cp:"© ২০২৬ Sakib Sadman. সর্বস্বত্ব সংরক্ষিত।",period:"পিরিয়ড",to:"থেকে",room:"রুম",free:"ফাঁকা পিরিয়ড",now:"এখন",fin:"শেষ",clsnow:"এখন ক্লাস চলছে",nextcls:"পরবর্তী ক্লাস",alldone:"আজকের সব ক্লাস শেষ",wkd:"সাপ্তাহিক ছুটি",wkdmsg:"শুক্র ও শনিবার ক্লাস নেই",nostart:"ক্লাস এখনো শুরু হয়নি",firstcls:"প্রথম ক্লাস: ",notstarted:"শুরু হয়নি",firstday:"প্রথম দিন",lab:"ল্যাব",prevm:"আগের মাস",nextm:"পরের মাস",annbtn:"ঘোষণা",anntitle:"ঘোষণা",annempty:"এখনো কোনো ঘোষণা নেই",back:"ফিরে যান",tg_imp:"গুরুত্বপূর্ণ",tg_info:"তথ্য",tg_upd:"আপডেট",anntab:"📢 ঘোষণা",a_link:"🔐 অ্যাডমিন",a_title:"অ্যাডমিন",a_setup:"একবারের সেটআপ",a_setup_p:"এই ডিভাইসকে আপনার GitHub রিপোর সাথে যুক্ত করুন। টোকেন শুধু এই ডিভাইসে, আপনার পাসওয়ার্ড দিয়ে লক করা থাকবে।",a_how:"টোকেন কীভাবে পাবো?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token।</li><li>Repository access: Only select repositories → এই সাইটের রিপো বেছে নিন।</li><li>Permissions → Repository permissions → Contents: Read and write।</li><li>Generate করে টোকেন কপি করে নিচে পেস্ট করুন।</li>",a_token:"GitHub টোকেন",a_repo:"রিপোজিটরি (owner/name)",a_branch:"ব্রাঞ্চ",a_pass:"অ্যাডমিন পাসওয়ার্ড",a_pass2:"পাসওয়ার্ড আবার দিন",a_save:"সেভ করে এগিয়ে যান",a_err_fields:"টোকেন এবং username/repo ফরম্যাটে রিপো লিখুন।",a_pass_short:"পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",a_pass_mm:"পাসওয়ার্ড মেলেনি।",a_err_token:"GitHub গ্রহণ করেনি। টোকেন, রিপোর নাম এবং Contents: Read and write অনুমতি দেখুন।",a_nocrypto:"এখানে নিরাপদ স্টোরেজ চলছে না। লাইভ https সাইট খুলুন।",a_unlock_p:"অ্যাডমিন পাসওয়ার্ড দিন।",a_unlock:"আনলক",a_wrong:"ভুল পাসওয়ার্ড।",a_reset:"সেটআপ রিসেট",a_resetq:"এই ডিভাইসে সেভ করা টোকেন মুছে ফেলবেন?",a_new:"নতুন ঘোষণা",a_ftitle:"শিরোনাম",a_fbody:"বার্তা",a_ftype:"ধরন",a_pin:"উপরে পিন করুন",a_photo:"📷 ছবি যোগ করুন",a_pub:"প্রকাশ করুন",a_pubing:"প্রকাশ হচ্ছে…",a_pubok:"প্রকাশ হয়েছে! প্রায় এক মিনিটের মধ্যে সবাই দেখতে পাবে।",a_need:"আগে শিরোনাম বা বার্তা লিখুন।",a_mine:"প্রকাশিত ঘোষণা",a_del:"মুছুন",a_delq:"এই ঘোষণা মুছে ফেলবেন?",a_lock:"লক করুন",a_delok:"মুছে ফেলা হয়েছে। প্রায় এক মিনিটে সবার কাছ থেকে সরে যাবে।",a_e401:"টোকেন ভুল বা মেয়াদোত্তীর্ণ। সেটআপ রিসেট করে নতুন টোকেন দিন।",a_e403:"এই টোকেন দিয়ে রিপোতে লেখা যাচ্ছে না। নতুন টোকেন বানান: 'Only select repositories' বেছে নিন ('Public repositories' নয়), এই রিপো দিন এবং Contents: Read and write করুন।",a_e404:"রিপো বা ব্রাঞ্চ পাওয়া যায়নি, অথবা টোকেনের এই রিপোতে অ্যাক্সেস নেই। রিপোর নাম ও ব্রাঞ্চ (main বা master) দেখুন।",a_e422:"GitHub পরিবর্তনটি নেয়নি। ব্রাঞ্চের নাম দেখুন।",contact:"যোগাযোগ:",p_auto:"⚡ পারফরম্যান্স: অটো",p_lite:"⚡ পারফরম্যান্স: লাইট",p_full:"⚡ পারফরম্যান্স: ফুল",off_msg:"📴 অফলাইন — সংরক্ষিত তথ্য দেখানো হচ্ছে",examtab:"📝 পরীক্ষা",examtitle:"পরীক্ষার সময়সূচি",exempty:"এখনো কোনো পরীক্ষা দেওয়া হয়নি",tomorrow:"আগামীকাল",a_t_n:"📢 নোটিশ",a_t_e:"📝 পরীক্ষা",a_t_r:"📚 রুটিন",a_xnew:"নতুন পরীক্ষা",a_xtitle:"পরীক্ষার নাম (যেমন Mid Term)",a_xsubj:"বিষয়",a_xother:"অথবা অন্য বিষয় লিখুন",a_xdate:"তারিখ",a_xstart:"শুরুর সময়",a_xend:"শেষের সময়",a_xroom:"রুম",a_xnote:"নোট",a_xneed:"তারিখ এবং বিষয় বা নাম দিন।",a_xlist:"প্রকাশিত পরীক্ষা",a_xdelq:"এই পরীক্ষা মুছে ফেলবেন?",a_rt:"রুটিন এডিট",a_rhelp:"একটি দিন বেছে পিরিয়ড এডিট করুন, তারপর Publish চাপুন। প্রতিটি পিরিয়ড ৪৫ মিনিট, শুরু সকাল ৮:০০।",a_radd:"পিরিয়ড যোগ করুন",a_rnone:"এই দিনে কোনো পিরিয়ড নেই।",a_rsub:"বিষয়সমূহ",a_rsadd:"বিষয় যোগ করুন",a_rtea:"শিক্ষকগণ",a_rtadd:"শিক্ষক যোগ করুন",a_rpub:"রুটিন প্রকাশ করুন",a_roverlap:"পিরিয়ড একে অপরের সাথে মিলে যাচ্ছে",a_rok:"রুটিন প্রকাশ হয়েছে! শীঘ্রই সবাই দেখতে পাবে।",a_rsdelq:"এই বিষয়টি রুটিনে ব্যবহৃত হচ্ছে। মুছলে ওই পিরিয়ডগুলো ফাঁকা হয়ে যাবে। মুছবেন?",a_rname:"নাম",a_rlab:"ল্যাব / নোট"}};
 function t(k){return I[LANG][k]}
 var BD="০১২৩৪৫৬৭৮৯";
 function nb(x){x=String(x);return LANG==="bn"?x.replace(/[0-9]/g,function(d){return BD.charAt(d)}):x}
@@ -305,8 +326,8 @@ var DL={en:{Sunday:"Sunday",Monday:"Monday",Tuesday:"Tuesday",Wednesday:"Wednesd
 var DS={en:{Sunday:"Sun",Monday:"Mon",Tuesday:"Tue",Wednesday:"Wed",Thursday:"Thu",Friday:"Fri",Saturday:"Sat"},bn:{Sunday:"রবি",Monday:"সোম",Tuesday:"মঙ্গল",Wednesday:"বুধ",Thursday:"বৃহ",Friday:"শুক্র",Saturday:"শনি"}};
 function dl(n){return DL[LANG][n]}
 function ds(n){return DS[LANG][n]}
-function sname(c){return LANG==="bn"?SB[c]:S[c][0]}
-function tname(k){return LANG==="bn"?TB[k]:T[k]}
+function sname(c){return S[c]?S[c][0]:String(c||"")}
+function tname(k){return LANG==="bn"&&!ROUT_REMOTE&&TB[k]?TB[k]:(T[k]||"")}
 function rm(r){return LANG==="bn"?nb(r).replace("&","ও"):r}
 function cnt(n){return LANG==="bn"?nb(n)+"টি ক্লাস":n+" classes"}
 function fmtDate(d,o){return LANG==="bn"?nb(d.toLocaleDateString("bn-BD",o)):d.toLocaleDateString("en-GB",o)}
@@ -314,7 +335,7 @@ function endsIn(x,low){return LANG==="bn"?"শেষ হতে "+x+" বাক�
 function startsIn(x,low){return LANG==="bn"?x+" পর শুরু":(low?"starts in ":"Starts in ")+x}
 function clock(){var now=new Date();mins=now.getHours()*60+now.getMinutes();
   nowD=now;var d=new Date(now);if(mins>=795)d.setDate(d.getDate()+1);
-  while(!R[DN[d.getDay()]])d.setDate(d.getDate()+1);effD=d;
+  var _g=0;while(!clsOf(DN[d.getDay()])&&_g++<14)d.setDate(d.getDate()+1);effD=d;
   todayName=DN[d.getDay()];isToday=d.toDateString()===now.toDateString();
   document.getElementById("date").innerHTML=fmtDate(d,{weekday:"long",day:"numeric",month:"long",year:"numeric"})+"<small>"+(isToday?t("today"):t("nextday"))+"</small>";
   if(lastEff!==todayName){cur=todayName;lastEff=todayName}}
@@ -359,7 +380,7 @@ function cardsHTML(day,liveCtx){
     if(!x.code)return '<div class="card free" style="--i:'+i+'">'+time+'<div class="body"><div class="name">'+t("free")+'</div></div></div>';
     var st="",done=false;
     if(liveCtx){if(live)st='<span class="tag ends">'+endsIn(fd(sp[1]-nm))+"</span>";else if(sp[0]>nm)st='<span class="tag st">'+startsIn(fd(sp[0]-nm))+"</span>";else{done=true;st='<span class="tag">'+t("fin")+'</span>'}}
-    var s=S[x.code],tag=x.lab?'<span class="tag lab">'+(x.lab==="Lab"?t("lab"):x.lab)+'</span>':"";
+    var s=S[x.code]||[x.code,"#64748b"],tag=x.lab?'<span class="tag lab">'+(x.lab==="Lab"?t("lab"):x.lab)+'</span>':"";
     return '<div class="card'+(live?' live':'')+(done?' done':'')+'" style="--c:'+s[1]+';--i:'+i+'">'+time+'<div class="body"><div class="name">'+sname(x.code)+(live?'<span class="now">'+t("now")+'</span>':'')+'</div><div class="teacher">'+tname(x.t)+'</div><div class="meta"><span class="tag dur">⏱ '+dur(sp[1]-sp[0])+'</span><span class="tag">'+t("room")+" "+rm(x.room)+'</span>'+tag+st+'</div></div></div>'
   }).join("")}
 /* ----- language ----- */
@@ -373,7 +394,7 @@ function updateLsw(){[].forEach.call($lsw.querySelectorAll("button"),function(b)
 function setLang(l){
   if(l===LANG)return;LANG=l;try{localStorage.setItem("lang",l)}catch(e){}
   applyLang(true);applyPerf();updateLsw();clock();buildDays();markDays();
-  swapIn($w,renderDay,0);buildGrid();swapIn($cw,renderSel,0);renderAnn();badge()}
+  swapIn($w,renderDay,0);buildGrid();swapIn($cw,renderSel,0);renderAnn();badge();renderEx()}
 [].forEach.call($lsw.querySelectorAll("button"),function(b){b.onclick=function(){setLang(b.dataset.l)}});
 /* ----- routine ----- */
 function buildDays(){
@@ -391,21 +412,21 @@ function renderDay(){
   setHTML($l,cardsHTML(cur,cur===todayName&&isToday))}
 function go(n){if(n===cur)return;var dir=names.indexOf(n)>names.indexOf(cur)?1:-1;cur=n;markDays();swapIn($w,renderDay,dir)}
 /* ----- calendar ----- */
-function buildGrid(){
-  var y=vm.getFullYear(),m=vm.getMonth(),first=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),tk=key(new Date()),sk=key(sd),stk=key(START),h="";
+function buildGrid(quiet){
+  var y=vm.getFullYear(),m=vm.getMonth(),first=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),tk=key(new Date()),sk=key(sd),stk=key(START),h="",exk={};EX.forEach(function(x){if(x.d)exk[key(pD(x.d))]=1});
   for(var i=0;i<first;i++)h+='<i class="cell blank" style="--k:'+i+'"></i>';
   for(var d=1;d<=dim;d++){
-    var dt=new Date(y,m,d),k=key(dt),cl=R[DN[dt.getDay()]],pre=dt<START,dots="",seen={};
-    if(cl&&!pre)cl.forEach(function(x){if(x.code&&!seen[x.code]){seen[x.code]=1;dots+='<u style="background:'+S[x.code][1]+'"></u>'}});
-    h+='<button class="cell'+(!cl?" off":"")+(cl&&pre?" pre":"")+(k===tk?" today":"")+(k===stk?" start":"")+(k===sk?" sel":"")+'" data-k="'+k+'" style="--k:'+(first+d-1)+'"><span>'+nb(d)+'</span><em>'+dots+'</em></button>'}
+    var dt=new Date(y,m,d),k=key(dt),cl=clsOf(DN[dt.getDay()]),pre=dt<START,dots="",seen={};
+    if(cl&&!pre)cl.forEach(function(x){if(x.code&&!seen[x.code]){seen[x.code]=1;dots+='<u style="background:'+(S[x.code]||[0,"#64748b"])[1]+'"></u>'}});
+    h+='<button class="cell'+(!cl?" off":"")+(cl&&pre?" pre":"")+(k===tk?" today":"")+(exk[k]?" exam":"")+(k===stk?" start":"")+(k===sk?" sel":"")+'" data-k="'+k+'" style="--k:'+(first+d-1)+'"><span>'+nb(d)+'</span><em>'+dots+'</em></button>'}
   $grid.innerHTML=h;$grid._tk=tk;
-  $mt.textContent=fmtDate(vm,{month:"long",year:"numeric"});bump($mt)}
+  $mt.textContent=fmtDate(vm,{month:"long",year:"numeric"});if(!quiet)bump($mt)}
 function renderSel(){
-  var n=DN[sd.getDay()],cl=R[n],pre=sd<START,sk=key(sd),isT=sk===key(new Date()),h,c;
+  var n=DN[sd.getDay()],cl=clsOf(n),pre=sd<START,sk=key(sd),isT=sk===key(new Date()),h,c,exs=EX.filter(function(x){return x.d&&key(pD(x.d))===sk}),exh=exs.map(exCard).join("");
   document.getElementById("ct").textContent=dl(n)+" · "+fmtDate(sd,{day:"numeric",month:"short"})+(isT?" · "+t("today"):sk===key(START)?" · "+t("firstday"):"");
-  if(!cl){c=t("wkd");h='<div class="empty"><b>🌴</b><span>'+t("wkd")+'</span>'+t("wkdmsg")+'</div>'}
-  else if(pre){c=t("notstarted");h='<div class="empty"><b>⏳</b><span>'+t("nostart")+'</span>'+t("firstcls")+fmtDate(START,{weekday:"long",day:"numeric",month:"long",year:"numeric"})+'</div>'}
-  else{c=cnt(cl.filter(function(x){return x.code}).length);h=cardsHTML(n,isT)}
+  if(!cl){c=exs.length?cntEx(exs.length):t("wkd");h=exh||'<div class="empty"><b>🌴</b><span>'+t("wkd")+'</span>'+t("wkdmsg")+'</div>'}
+  else if(pre){c=t("notstarted");h=exh+'<div class="empty"><b>⏳</b><span>'+t("nostart")+'</span>'+t("firstcls")+fmtDate(START,{weekday:"long",day:"numeric",month:"long",year:"numeric"})+'</div>'}
+  else{c=cnt(cl.filter(function(x){return x.code}).length)+(exs.length?" · "+cntEx(exs.length):"");h=exh+cardsHTML(n,isT)}
   document.getElementById("cc").textContent=c;setHTML($cl,h)}
 function pick(d){
   if(key(d)===key(sd))return;
@@ -426,12 +447,12 @@ function setView(v){
   want=v;updateSeg();
   if(vbusy||shown===v)return;
   vbusy=true;
-  var VV={r:$vr,c:$vc,a:document.getElementById("va")},OO=["r","c","a"],from=VV[shown],to=VV[v],dir=OO.indexOf(v)>OO.indexOf(shown)?1:-1;
+  var VV={r:$vr,c:$vc,e:document.getElementById("ve"),a:document.getElementById("va")},OO=["r","c","e","a"],from=VV[shown],to=VV[v],dir=OO.indexOf(v)>OO.indexOf(shown)?1:-1;
   from.style.setProperty("--dir",dir);from.classList.add("leave");
   setTimeout(function(){
     from.classList.remove("on","leave","enter");
     to.style.setProperty("--dir",dir);to.classList.add("on");
-    if(v==="c"){buildGrid();renderSel()}else if(v==="a"){calcNew();$al._h=null;renderAnn();loadAnn();setTimeout(function(){markSeen();badge()},800)}else{markDays();renderDay()}
+    if(v==="c"){buildGrid();renderSel()}else if(v==="e"){renderEx();loadExams()}else if(v==="a"){calcNew();$al._h=null;renderAnn();loadAnn();setTimeout(function(){markSeen();badge()},800)}else{markDays();renderDay()}
     void to.offsetWidth;to.classList.add("enter");
     setTimeout(function(){to.classList.remove("enter")},1100);
     shown=v;vbusy=false;
@@ -463,23 +484,27 @@ function renderAnn(){
   setHTML($al,h)}
 function rawBase(){var r=GH_REPO||guessRepo();return r?"https://raw.githubusercontent.com/"+r+"/HEAD/":""}
 function imgUrl(p){if(!p||String(p).indexOf("notice-img/")!==0)return"";var b=rawBase();return b?b+p:p}
-function normA(j){return Array.isArray(j)?{rev:0,items:j}:{rev:+(j&&j.rev)||0,items:Array.isArray(j&&j.items)?j.items:[]}}
-function getA(url){return fetch(url,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(normA).catch(function(){return null})}
-function loadAnn(){
+function revKey(f){return f==="announcements.json"?"annRev":"rev_"+f}
+function cachedDoc(f){try{return JSON.parse(localStorage.getItem("cache_"+f)||"null")}catch(e){return null}}
+function fetchDoc(f){
   var t0=Date.now(),b=rawBase(),us=[];
-  if(b)us.push(b+"announcements.json?t="+t0+"&r="+Math.random().toString(36).slice(2));
-  us.push("announcements.json?t="+t0);
-  Promise.all(us.map(getA)).then(function(rs){
-    annLoaded=true;
+  if(b)us.push(b+f+"?t="+t0+"&r="+Math.random().toString(36).slice(2));
+  us.push(f+"?t="+t0);
+  return Promise.all(us.map(function(u){return fetch(u,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(o){if(Array.isArray(o))o={rev:0,items:o};o.rev=+o.rev||0;return o}).catch(function(){return null})})).then(function(rs){
     var best=null;rs.forEach(function(x){if(x&&(!best||x.rev>best.rev))best=x});
-    if(!best){renderAnn();return}
-    var cur=0;try{cur=+localStorage.getItem("annRev")||0}catch(e){}
-    if(best.rev<cur){renderAnn();return}
-    try{localStorage.setItem("annRev",String(best.rev));localStorage.setItem("annCache",JSON.stringify(best.items))}catch(e){}
+    if(!best)return null;
+    var cur=0;try{cur=+localStorage.getItem(revKey(f))||0}catch(e){}
+    if(best.rev<cur)return null;
+    try{localStorage.setItem(revKey(f),String(best.rev));localStorage.setItem("cache_"+f,JSON.stringify(best))}catch(e){}
+    return best})}
+function loadAnn(){
+  fetchDoc("announcements.json").then(function(best){
+    annLoaded=true;
+    if(!best||!Array.isArray(best.items)){renderAnn();return}
     var keep={};ANN.forEach(function(x){if(x._data)keep[x.id]=x._data});
     best.items.forEach(function(x){if(keep[x.id])x._data=keep[x.id]});
     ANN=best.items;renderAnn();badge();if($adm.classList.contains("on")&&C)renderMine()}).catch(function(){annLoaded=true;renderAnn()})}
-try{var _c=JSON.parse(localStorage.getItem("annCache")||"null");if(Array.isArray(_c))ANN=_c}catch(e){}
+var _c=cachedDoc("announcements.json");if(_c&&Array.isArray(_c.items))ANN=_c.items;else{try{var _l=JSON.parse(localStorage.getItem("annCache")||"null");if(Array.isArray(_l))ANN=_l}catch(e){}}
 document.addEventListener("click",function(e){var im=e.target.closest&&e.target.closest(".aimg");if(im){$lb.querySelector("img").src=im.src;$lb.classList.add("on")}});
 $lb.onclick=function(){$lb.classList.remove("on")};
 /* ----- admin: GitHub API + encrypted token ----- */
@@ -487,8 +512,9 @@ function gh(path,o){o=o||{};var hd={"Authorization":"Bearer "+C.token,"Accept":"
   return fetch("https://api.github.com/repos/"+C.repo+path,{method:o.method||"GET",headers:hd,body:o.body?JSON.stringify(o.body):undefined,cache:"no-store"}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok){var e=new Error(j.message||("HTTP "+r.status));e.status=r.status;throw e}return j})})}
 function b64u(str){var b=new TextEncoder().encode(str),s="";for(var i=0;i<b.length;i+=8192)s+=String.fromCharCode.apply(null,b.subarray(i,i+8192));return btoa(s)}
 function unb64u(x){var s=atob(x.replace(/\s/g,"")),a=new Uint8Array(s.length);for(var i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return new TextDecoder().decode(a)}
-function getRemote(){return gh("/contents/announcements.json?ref="+encodeURIComponent(C.branch)).then(function(j){var a=normA(JSON.parse(unb64u(j.content)));return{sha:j.sha,list:a.items,rev:a.rev}}).catch(function(e){if(e.status===404)return{sha:null,list:[],rev:0};throw e})}
-function upd(fn,msg,retry){return getRemote().then(function(r){var nl=fn(r.list),rev=Math.max(Date.now(),r.rev+1),body={message:msg,content:b64u(JSON.stringify({rev:rev,items:nl},null,1)),branch:C.branch};if(r.sha)body.sha=r.sha;return gh("/contents/announcements.json",{method:"PUT",body:body}).then(function(){try{localStorage.setItem("annRev",String(rev))}catch(e){}return nl})}).catch(function(e){if((e.status===409||e.status===422)&&!retry)return upd(fn,msg,1);throw e})}
+function getRemoteDoc(f){return gh("/contents/"+f+"?ref="+encodeURIComponent(C.branch)).then(function(j){var o=JSON.parse(unb64u(j.content));if(Array.isArray(o))o={rev:0,items:o};o.rev=+o.rev||0;return{sha:j.sha,o:o}}).catch(function(e){if(e.status===404)return{sha:null,o:{rev:0}};throw e})}
+function updDoc(f,fn,msg,retry){return getRemoteDoc(f).then(function(r){var no=fn(r.o),rev=Math.max(Date.now(),(r.o.rev||0)+1);no.rev=rev;var body={message:msg,content:b64u(JSON.stringify(no,null,1)),branch:C.branch};if(r.sha)body.sha=r.sha;return gh("/contents/"+f,{method:"PUT",body:body}).then(function(){try{localStorage.setItem(revKey(f),String(rev));localStorage.setItem("cache_"+f,JSON.stringify(no))}catch(e){}return no})}).catch(function(e){if((e.status===409||e.status===422)&&!retry)return updDoc(f,fn,msg,1);throw e})}
+function upd(fn,msg){return updDoc("announcements.json",function(o){o.items=fn(o.items||[]);return o},msg).then(function(o){return o.items})}
 function toB(u){var s="";for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s)}
 function fromB(b){var s=atob(b),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u}
 function kdf(pass,salt){if(!window.crypto||!crypto.subtle)return Promise.reject(new Error(t("a_nocrypto")));return crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]).then(function(k){return crypto.subtle.deriveKey({name:"PBKDF2",salt:salt,iterations:200000,hash:"SHA-256"},k,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])})}
@@ -526,19 +552,17 @@ function unlockV(){
   go.onclick=doit;inp.addEventListener("keydown",function(e){if(e.key==="Enter")doit()});
   $i("u_rs").onclick=function(){if(confirm(t("a_resetq"))){try{localStorage.removeItem("adm")}catch(e){}C=null;setupV()}}}
 var pendingImg=null;
-function panel(){
+function noticeV(){
   pendingImg=null;
-  $admb.innerHTML='<div class="acard"><h3>'+t("a_new")+'</h3>'
+  $i("abody").innerHTML='<div class="acard"><h3>'+t("a_new")+'</h3>'
   +'<label>'+t("a_ftitle")+'<input id="f_t" maxlength="120"></label>'
   +'<label>'+t("a_fbody")+'<textarea id="f_b" rows="4"></textarea></label>'
   +'<div class="frow"><label>'+t("a_ftype")+'<select id="f_g"><option value="info">'+t("tg_info")+'</option><option value="imp">'+t("tg_imp")+'</option><option value="upd">'+t("tg_upd")+'</option></select></label><label class="chk"><input type="checkbox" id="f_p"> '+t("a_pin")+'</label></div>'
   +'<label class="fbtn">'+t("a_photo")+'<input type="file" id="f_f" accept="image/*" hidden></label><img class="fprev" id="f_prev" alt="" hidden>'
   +'<button class="pbtn" id="f_pub">'+t("a_pub")+'</button><div class="amsg" id="f_m"></div></div>'
-  +'<div class="acard"><h3>'+t("a_mine")+'</h3><div id="f_list"></div></div>'
-  +'<div style="text-align:center"><button class="gbtn" id="f_lock">'+t("a_lock")+'</button></div>';
+  +'<div class="acard"><h3>'+t("a_mine")+'</h3><div id="f_list"></div></div>';
   $i("f_f").onchange=function(){var f=this.files&&this.files[0];if(!f)return;compress(f).then(function(d){pendingImg=d;var p=$i("f_prev");p.src=d;p.hidden=false}).catch(function(e){msg($i("f_m"),e.message)})};
   $i("f_pub").onclick=publish;
-  $i("f_lock").onclick=function(){C=null;admRender()};
   renderMine()}
 function renderMine(){var el=$i("f_list");if(!el)return;
   el.innerHTML=ANN.length?ANN.map(function(a){return '<div class="mine"><div><b>'+esc(tx(a.title)||tx(a.body).slice(0,40))+'</b><small>'+esc(a.d||"")+(a.img||a._data?" 📷":"")+'</small></div><button data-del="'+esc(a.id)+'" aria-label="'+t("a_del")+'">🗑</button></div>'}).join(""):'<p class="ahelp">'+t("annempty")+'</p>';
@@ -552,7 +576,7 @@ function publish(){
   var p=Promise.resolve();
   if(data){a.img="notice-img/"+id+".jpg";p=gh("/contents/"+a.img,{method:"PUT",body:{message:"Add notice image",content:data.split(",")[1],branch:C.branch}})}
   p.then(function(){return upd(function(l){l.unshift(a);return l},"Add announcement")}).then(function(nl){
-    try{localStorage.setItem("annCache",JSON.stringify(nl))}catch(e){}
+    
     var mine=nl.filter(function(x){return x.id===id})[0];if(mine&&data)mine._data=data;
     ANN=nl;renderAnn();badge();renderMine();
     $i("f_t").value="";$i("f_b").value="";$i("f_p").checked=false;$i("f_f").value="";$i("f_prev").hidden=true;pendingImg=null;msg(m,t("a_pubok"),1)
@@ -562,7 +586,7 @@ function delAnn(id){
   var item=ANN.filter(function(x){return x.id===id})[0],m=$i("f_m");
   upd(function(l){return l.filter(function(x){return x.id!==id})},"Delete announcement").then(function(nl){
     
-    try{localStorage.setItem("annCache",JSON.stringify(nl))}catch(e){}
+    
     ANN=nl;renderAnn();badge();renderMine();if(m)msg(m,t("a_delok"),1);
     if(item&&item.img&&String(item.img).indexOf("notice-img/")===0){gh("/contents/"+item.img+"?ref="+encodeURIComponent(C.branch)).then(function(j){return gh("/contents/"+item.img,{method:"DELETE",body:{message:"Delete notice image",sha:j.sha,branch:C.branch}})}).catch(function(){})}
   }).catch(function(e){if(m)msg(m,errMsg(e))})}
@@ -584,15 +608,134 @@ function probeFps(){
     if(arr[20]>27){autoLite=true;try{localStorage.setItem("perfAuto","1")}catch(e){}applyPerf()}}
   requestAnimationFrame(f)}
 
+/* ----- routine / exams data ----- */
+var ROUT_REMOTE=false,EX=[],exLoaded=false,$ex=document.getElementById("exlist"),admTab="n",RD=null,rdDay="Sunday";
+function clsOf(n){var a=R[n];return a&&a.some(function(x){return x.code})?a:null}
+function applyRoutine(o){if(!o||!o.days||!o.subjects)return;S=o.subjects;T=o.teachers||{};R=o.days;ROUT_REMOTE=true;names.forEach(function(n){if(!R[n])R[n]=[]})}
+function applyRoutineAll(b){
+  var sig=JSON.stringify([b.subjects,b.teachers,b.days]);if(sig===window._rsig)return;window._rsig=sig;
+  applyRoutine(b);lastEff=null;clock();buildDays();markDays();renderDay();buildGrid(1);renderSel();renderEx()}
+function loadRoutine(){fetchDoc("routine.json").then(function(b){if(b&&b.days&&b.subjects)applyRoutineAll(b)}).catch(function(){})}
+var _xc=cachedDoc("exams.json");if(_xc&&Array.isArray(_xc.items))EX=_xc.items;
+function pD(d){var p=String(d).split("-");return new Date(+p[0],p[1]-1,+p[2])}
+function tmin(h){var p=String(h||"").split(":");return p.length>1&&p[0]!==""?(+p[0])*60+(+p[1]):null}
+function cntEx(n){return LANG==="bn"?nb(n)+"টি পরীক্ষা":n+(n>1?" exams":" exam")}
+function inDays(n){return LANG==="bn"?nb(n)+" দিন পরে":"in "+n+" days"}
+function exName(x){return x.code?sname(x.code):(x.subj||"")}
+function exCard(x,i){
+  var d=pD(x.d),diff=Math.round((d-today0())/864e5),a=tmin(x.tm),b=tmin(x.en),col=x.code&&S[x.code]?S[x.code][1]:"#ef4444",
+  when=a!=null?fm(a)+(b!=null?" – "+fm(b):""):"",
+  cd=diff<0?t("fin"):diff===0?t("today"):diff===1?t("tomorrow"):inDays(diff);
+  return '<div class="card'+(diff<0?' done':'')+'" style="--c:'+col+';--i:'+i+'"><div class="time"><div class="p">'+fmtDate(d,{weekday:"short"})+'</div><div class="t">'+nb(d.getDate())+'</div><div class="to">'+fmtDate(d,{month:"short"})+'</div></div><div class="body"><div class="name">'+esc(exName(x))+'</div>'+(x.title?'<div class="teacher">'+esc(x.title)+'</div>':'')+'<div class="meta">'+(when?'<span class="tag dur">🕒 '+when+'</span>':'')+(x.room?'<span class="tag">'+t("room")+" "+esc(rm(x.room))+'</span>':'')+'<span class="tag'+(diff<0?'':diff<=3?' warn':' st')+'">'+cd+'</span></div>'+(x.note?'<div class="teacher" style="margin-top:8px">'+esc(x.note)+'</div>':'')+'</div></div>'}
+function renderEx(){
+  var td=today0(),ok=EX.filter(function(x){return x.d}),
+  up=ok.filter(function(x){return pD(x.d)>=td}).sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:((a.tm||"")<(b.tm||"")?-1:1)}),
+  past=ok.filter(function(x){return pD(x.d)<td}).sort(function(a,b){return a.d<b.d?1:-1}),
+  list=up.concat(past);
+  document.getElementById("exc").textContent=up.length?(LANG==="bn"?"আসছে: "+nb(up.length):up.length+" upcoming"):"";
+  setHTML($ex,list.length?list.map(exCard).join(""):(exLoaded?'<div class="empty"><b>📝</b><span>'+t("exempty")+'</span></div>':""))}
+function loadExams(){fetchDoc("exams.json").then(function(b){exLoaded=true;if(b&&Array.isArray(b.items)){EX=b.items;buildGrid(1);renderSel()}renderEx()}).catch(function(){exLoaded=true;renderEx()})}
+function loadAll(){loadAnn();loadExams();loadRoutine()}
+/* ----- admin: tabs, exams, routine editor ----- */
+function panel(){
+  $admb.innerHTML='<div class="atabs" id="atabs"><button data-t="n">'+t("a_t_n")+'</button><button data-t="e">'+t("a_t_e")+'</button><button data-t="r">'+t("a_t_r")+'</button></div><div id="abody"></div><div style="text-align:center"><button class="gbtn" id="f_lock">'+t("a_lock")+'</button></div>';
+  [].forEach.call($i("atabs").querySelectorAll("button"),function(b){b.onclick=function(){admTab=b.dataset.t;admBody()}});
+  $i("f_lock").onclick=function(){C=null;admRender()};
+  admBody()}
+function admBody(){
+  [].forEach.call($i("atabs").querySelectorAll("button"),function(b){b.classList.toggle("on",b.dataset.t===admTab)});
+  if(admTab==="e")examV();else if(admTab==="r")routineV();else noticeV()}
+function opts(map,sel,blank){return(blank===undefined?"":'<option value="">'+blank+'</option>')+Object.keys(map).map(function(k){return '<option value="'+esc(k)+'"'+(k===sel?' selected':'')+'>'+esc(typeof map[k]==="string"?map[k]:map[k][0])+'</option>'}).join("")}
+function examV(){
+  $i("abody").innerHTML='<div class="acard"><h3>'+t("a_xnew")+'</h3>'
+  +'<label>'+t("a_xtitle")+'<input id="x_t" maxlength="80"></label>'
+  +'<label>'+t("a_xsubj")+'<select id="x_s">'+opts(S,"","—")+'</select></label>'
+  +'<label>'+t("a_xother")+'<input id="x_o" maxlength="80"></label>'
+  +'<label>'+t("a_xdate")+'<input id="x_d" type="date"></label>'
+  +'<div class="frow"><label>'+t("a_xstart")+'<input id="x_a" type="time"></label><label>'+t("a_xend")+'<input id="x_e" type="time"></label></div>'
+  +'<label>'+t("a_xroom")+'<input id="x_r" maxlength="40"></label>'
+  +'<label>'+t("a_xnote")+'<textarea id="x_n" rows="2" maxlength="300"></textarea></label>'
+  +'<button class="pbtn" id="x_pub">'+t("a_pub")+'</button><div class="amsg" id="x_m"></div></div>'
+  +'<div class="acard"><h3>'+t("a_xlist")+'</h3><div id="x_list"></div></div>';
+  $i("x_pub").onclick=pubExam;mineEx()}
+function mineEx(){var el=$i("x_list");if(!el)return;
+  var l=EX.slice().sort(function(a,b){return a.d<b.d?1:-1});
+  el.innerHTML=l.length?l.map(function(x){return '<div class="mine"><div><b>'+esc(exName(x)||x.title||"")+'</b><small>'+esc(x.d)+(x.title&&exName(x)?" · "+esc(x.title):"")+'</small></div><button data-xdel="'+esc(x.id)+'" aria-label="'+t("a_del")+'">🗑</button></div>'}).join(""):'<p class="ahelp">'+t("exempty")+'</p>';
+  [].forEach.call(el.querySelectorAll("[data-xdel]"),function(b){b.onclick=function(){delExam(b.dataset.xdel)}})}
+function exDone(no){EX=no.items||[];renderEx();buildGrid(1);renderSel();mineEx()}
+function pubExam(){
+  var d=$i("x_d").value,code=$i("x_s").value,subj=$i("x_o").value.trim(),ti=$i("x_t").value.trim(),m=$i("x_m"),btn=$i("x_pub");
+  if(!d||!(code||subj||ti)){msg(m,t("a_xneed"));return}
+  var x={id:"x"+Date.now(),d:d,title:ti,code:code,subj:subj,tm:$i("x_a").value,en:$i("x_e").value,room:$i("x_r").value.trim(),note:$i("x_n").value.trim()};
+  var old=btn.textContent;busy(btn,true,t("a_pubing"));msg(m,"");
+  updDoc("exams.json",function(o){o.items=(o.items||[]).concat([x]);return o},"Add exam").then(function(no){exDone(no);["x_t","x_o","x_d","x_a","x_e","x_r","x_n"].forEach(function(id){$i(id).value=""});$i("x_s").value="";msg(m,t("a_pubok"),1)}).catch(function(e){msg(m,errMsg(e))}).then(function(){busy(btn,false,old)})}
+function delExam(id){
+  if(!confirm(t("a_xdelq")))return;
+  updDoc("exams.json",function(o){o.items=(o.items||[]).filter(function(x){return x.id!==id});return o},"Delete exam").then(exDone).catch(function(e){var m=$i("x_m");if(m)msg(m,errMsg(e))})}
+function pOpts(sel){var h="";for(var i=1;i<=7;i++)h+='<option'+(i===sel?' selected':'')+'>'+i+'</option>';return h}
+function routineV(){
+  if(!RD)RD={subjects:JSON.parse(JSON.stringify(S)),teachers:JSON.parse(JSON.stringify(T)),days:JSON.parse(JSON.stringify(R))};
+  names.forEach(function(n){if(!RD.days[n])RD.days[n]=[]});
+  $i("abody").innerHTML='<div class="acard"><h3>'+t("a_rt")+'</h3><p class="ahelp">'+t("a_rhelp")+'</p><div class="dchips" id="r_days">'+names.map(function(n){return '<button data-d="'+n+'">'+ds(n)+'</button>'}).join("")+'</div><div id="r_rows"></div><button class="fbtn" id="r_add">＋ '+t("a_radd")+'</button></div>'
+  +'<details class="acard"><summary>'+t("a_rsub")+'</summary><div id="r_subs"></div><button class="fbtn" id="r_sadd">＋ '+t("a_rsadd")+'</button></details>'
+  +'<details class="acard"><summary>'+t("a_rtea")+'</summary><div id="r_teas"></div><button class="fbtn" id="r_tadd">＋ '+t("a_rtadd")+'</button></details>'
+  +'<button class="pbtn" id="r_pub">'+t("a_rpub")+'</button><div class="amsg" id="r_m"></div>';
+  [].forEach.call($i("r_days").querySelectorAll("button"),function(b){b.onclick=function(){rdDay=b.dataset.d;rDays();rRows()}});
+  $i("r_add").onclick=function(){var rows=RD.days[rdDay],last=rows.length?+String(rows[rows.length-1].p).split("–").pop():0;rows.push({p:String(Math.min(last+1,7)),code:null});rRows()};
+  $i("r_sadd").onclick=function(){RD.subjects["s"+Date.now()]=["","#2563eb"];rSubs()};
+  $i("r_tadd").onclick=function(){RD.teachers["t"+Date.now()]="";rTeas()};
+  $i("r_pub").onclick=pubRoutine;
+  var rr=$i("r_rows");
+  function rowOf(e){var r=e.target.closest(".rrow");return r?{i:+r.dataset.i,f:e.target.dataset.f,v:e.target.value}:null}
+  rr.addEventListener("change",function(e){var o=rowOf(e);if(!o||!o.f)return;var x=RD.days[rdDay][o.i],pr=String(x.p).split("–"),a=+pr[0],b=+(pr[1]||pr[0]);
+    if(o.f==="a"){a=+o.v;if(b<a)b=a;x.p=a===b?String(a):a+"–"+b;rRows()}
+    else if(o.f==="b"){b=+o.v;if(b<a)a=b;x.p=a===b?String(a):a+"–"+b;rRows()}
+    else if(o.f==="code"){x.code=o.v||null}
+    else if(o.f==="t"){x.t=o.v||undefined}});
+  rr.addEventListener("input",function(e){var o=rowOf(e);if(!o||(o.f!=="room"&&o.f!=="lab"))return;RD.days[rdDay][o.i][o.f]=o.v});
+  rr.addEventListener("click",function(e){var b=e.target.closest("[data-del]");if(!b)return;var r=b.closest(".rrow");RD.days[rdDay].splice(+r.dataset.i,1);rRows()});
+  var sb=$i("r_subs");
+  sb.addEventListener("input",function(e){var r=e.target.closest(".rrow");if(!r)return;var k=r.dataset.k;if(e.target.dataset.f==="nm")RD.subjects[k][0]=e.target.value;else if(e.target.dataset.f==="co")RD.subjects[k][1]=e.target.value});
+  sb.addEventListener("click",function(e){var b=e.target.closest("[data-del]");if(!b)return;var k=b.closest(".rrow").dataset.k,used=names.some(function(n){return RD.days[n].some(function(x){return x.code===k})});
+    if(used&&!confirm(t("a_rsdelq")))return;
+    names.forEach(function(n){RD.days[n].forEach(function(x){if(x.code===k){x.code=null;delete x.t}})});delete RD.subjects[k];rSubs();rRows()});
+  sb.addEventListener("change",function(){rRows()});
+  var tb=$i("r_teas");
+  tb.addEventListener("input",function(e){var r=e.target.closest(".rrow");if(r)RD.teachers[r.dataset.k]=e.target.value});
+  tb.addEventListener("click",function(e){var b=e.target.closest("[data-del]");if(!b)return;var k=b.closest(".rrow").dataset.k;names.forEach(function(n){RD.days[n].forEach(function(x){if(x.t===k)delete x.t})});delete RD.teachers[k];rTeas();rRows()});
+  tb.addEventListener("change",function(){rRows()});
+  rDays();rRows();rSubs();rTeas()}
+function rDays(){[].forEach.call($i("r_days").querySelectorAll("button"),function(b){b.classList.toggle("on",b.dataset.d===rdDay)})}
+function rRows(){
+  var rows=RD.days[rdDay];
+  $i("r_rows").innerHTML=rows.length?rows.map(function(x,i){
+    var pr=String(x.p).split("–"),a=+pr[0],b=+(pr[1]||pr[0]);
+    return '<div class="rrow" data-i="'+i+'"><div class="rr1"><select data-f="a">'+pOpts(a)+'</select><span>–</span><select data-f="b">'+pOpts(b)+'</select><select data-f="code" class="grow">'+opts(RD.subjects,x.code,t("free"))+'</select><button data-del aria-label="'+t("a_del")+'">🗑</button></div>'
+    +'<div class="rr2"><select data-f="t">'+opts(RD.teachers,x.t,"—")+'</select><input data-f="room" placeholder="'+t("room")+'" value="'+esc(x.room||"")+'"><input data-f="lab" placeholder="'+t("a_rlab")+'" value="'+esc(x.lab||"")+'"></div></div>'}).join(""):'<p class="ahelp">'+t("a_rnone")+'</p>'}
+function rSubs(){$i("r_subs").innerHTML=Object.keys(RD.subjects).map(function(k){return '<div class="rrow" data-k="'+esc(k)+'"><div class="rr1"><input class="nm" data-f="nm" placeholder="'+t("a_rname")+'" value="'+esc(RD.subjects[k][0])+'"><input type="color" data-f="co" value="'+esc(RD.subjects[k][1])+'"><button data-del aria-label="'+t("a_del")+'">🗑</button></div></div>'}).join("")}
+function rTeas(){$i("r_teas").innerHTML=Object.keys(RD.teachers).map(function(k){return '<div class="rrow" data-k="'+esc(k)+'"><div class="rr1"><input class="nm" placeholder="'+t("a_rname")+'" value="'+esc(RD.teachers[k])+'"><button data-del aria-label="'+t("a_del")+'">🗑</button></div></div>'}).join("")}
+function pubRoutine(){
+  var m=$i("r_m"),btn=$i("r_pub"),days={},bad="";
+  names.forEach(function(n){
+    var rows=RD.days[n].map(function(x){var pr=String(x.p).split("–"),a=+pr[0],b=+(pr[1]||pr[0]);return{a:a,b:b,x:x}}).sort(function(p,q){return p.a-q.a});
+    for(var i=1;i<rows.length;i++)if(rows[i].a<=rows[i-1].b)bad=bad||n;
+    days[n]=rows.map(function(r){var x=r.x,o={p:r.a===r.b?String(r.a):r.a+"–"+r.b,code:x.code||null};if(x.code&&x.t)o.t=x.t;if(x.code&&x.room)o.room=x.room;if(x.lab)o.lab=x.lab;return o})});
+  if(bad){msg(m,t("a_roverlap")+" ("+dl(bad)+")");return}
+  var subs={},teas={};
+  Object.keys(RD.subjects).forEach(function(k){if(RD.subjects[k][0].trim())subs[k]=[RD.subjects[k][0].trim(),RD.subjects[k][1]]});
+  Object.keys(RD.teachers).forEach(function(k){if(RD.teachers[k].trim())teas[k]=RD.teachers[k].trim()});
+  var old=btn.textContent;busy(btn,true,t("a_pubing"));msg(m,"");
+  updDoc("routine.json",function(o){o.subjects=subs;o.teachers=teas;o.days=days;return o},"Update routine").then(function(no){RD=null;window._rsig=null;applyRoutineAll(no);msg(m,t("a_rok"),1);routineV();msg($i("r_m"),t("a_rok"),1)}).catch(function(e){msg(m,errMsg(e))}).then(function(){var b=$i("r_pub");if(b)busy(b,false,t("a_rpub"))})}
 /* ----- refresh / init ----- */
 function refresh(){
   var prev=cur;clock();markDays();
   if(cur!==prev)swapIn($w,renderDay,0);else renderDay();
-  if(shown==="c"){if($grid._tk!==key(new Date()))buildGrid();renderSel()}}
+  if(shown==="c"){if($grid._tk!==key(new Date()))buildGrid();renderSel()}else if(shown==="e")renderEx()}
 applyLang(false);
+var _rc=cachedDoc("routine.json");if(_rc&&_rc.days&&_rc.subjects){applyRoutine(_rc);window._rsig=JSON.stringify([_rc.subjects,_rc.teachers,_rc.days])}
 clock();sd=today0();vm=new Date(sd.getFullYear(),sd.getMonth(),1);
-buildDays();markDays();renderDay();updateSeg();updateLsw();badge();renderAnn();loadAnn();
-document.addEventListener("visibilitychange",function(){if(!document.hidden)loadAnn()});setInterval(loadAnn,180000);
+buildDays();markDays();renderDay();updateSeg();updateLsw();badge();renderAnn();renderEx();loadAll();
+document.addEventListener("visibilitychange",function(){if(!document.hidden)loadAll()});setInterval(loadAll,180000);
 $w.style.setProperty("--dir",0);$w.classList.add("enter");setTimeout(function(){$w.classList.remove("enter")},1100);
 requestAnimationFrame(function(){requestAnimationFrame(function(){$seg.classList.add("ready");$d.classList.add("ready");$lsw.classList.add("ready")})});
 setTimeout(function(){document.body.classList.remove("load")},1700);
@@ -600,7 +743,7 @@ window.addEventListener("resize",function(){updateSeg();updateLsw();markDays()})
 setInterval(refresh,10000);
 applyPerf();setTimeout(probeFps,2500);
 function netUI(){$i("offl").hidden=navigator.onLine}
-window.addEventListener("online",function(){netUI();loadAnn()});window.addEventListener("offline",netUI);netUI();
+window.addEventListener("online",function(){netUI();loadAll()});window.addEventListener("offline",netUI);netUI();
 if(window.matchMedia("(display-mode: standalone)").matches||navigator.standalone||/wv\)/.test(navigator.userAgent)){document.getElementById("dl").style.display="none"}
 if("serviceWorker" in navigator){var _had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener("controllerchange",function(){if(_had&&!window._rl){window._rl=1;location.reload()}});window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update()}).catch(function(){})})}
 </script>

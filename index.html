@@ -11,6 +11,7 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <script>try{var _d=navigator.deviceMemory,_c=navigator.hardwareConcurrency,_p=localStorage.getItem("perf")||"auto";if(_p==="lite"||(_p==="auto"&&((_d&&_d<=4)||(_c&&_c<=4)||localStorage.getItem("perfAuto")==="1")))document.documentElement.classList.add("lite")}catch(e){}</script>
+<script>try{var _a=JSON.parse(localStorage.getItem("accent")||"null");if(_a&&_a[0]&&_a[1]){var _s=document.documentElement.style;_s.setProperty("--a1",_a[0]);_s.setProperty("--a2",_a[1])}}catch(e){}</script>
 <style>
 :root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);
 --text:#12162b;--muted:#4a5270;--line:rgba(255,255,255,.55);
@@ -31,7 +32,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::after{background:linear-gradient(180deg,rgba(5,8,22,.7),rgba(5,8,22,.6) 50%,rgba(5,8,22,.74))}}
 :root[data-theme="dark"] body::after{background:linear-gradient(180deg,rgba(5,8,22,.7),rgba(5,8,22,.6) 50%,rgba(5,8,22,.74))}
 .glass,.days,.card,.cd,.foot .box,.seg,.calbox,.empty{background:var(--card);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--gb);box-shadow:var(--shadow)}
-.hero{background:linear-gradient(135deg,rgba(79,70,229,.62),rgba(14,165,233,.55));-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);border:1px solid rgba(255,255,255,.35);border-top:0;box-shadow:0 10px 36px rgba(60,70,200,.3),inset 0 -1px 0 rgba(255,255,255,.3);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 26px) 20px 70px;border-radius:0 0 30px 30px}
+.hero{background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 62%,transparent),color-mix(in srgb,var(--a2) 55%,transparent));-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);border:1px solid rgba(255,255,255,.35);border-top:0;box-shadow:0 10px 36px rgba(60,70,200,.3),inset 0 -1px 0 rgba(255,255,255,.3);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 16px) 18px 46px;border-radius:0 0 30px 30px}
 .hero .in{max-width:560px;margin:0 auto}
 .inst{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
 h1{font-size:2rem;margin:6px 0 10px;line-height:1.15}
@@ -44,7 +45,7 @@ main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
 .days button b{font-size:1.05rem;color:var(--text);transition:color .35s}
 .days button.on{color:#fff}
 .days button.on b{color:#fff}
-.days button.td:not(.on)::after{content:"";width:5px;height:5px;border-radius:50%;background:#0ea5e9;margin-top:2px}
+.days button.td:not(.on)::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--a2);margin-top:2px}
 .dh{display:flex;justify-content:space-between;align-items:baseline;margin:4px 4px 12px}
 .dh h2{margin:0;font-size:1.3rem}
 .dh span{color:var(--muted);font-size:.85rem}
@@ -79,17 +80,17 @@ main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
 .foot{max-width:560px;margin:8px auto 0;padding:0 16px calc(env(safe-area-inset-bottom,0px) + 28px);text-align:center}
 .foot .box{border-radius:22px;padding:16px}
 .foot .by{font-size:.85rem;color:var(--muted)}
-.foot .by b{display:block;margin-top:3px;font-size:1.15rem;background:linear-gradient(135deg,#6366f1,#0ea5e9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot .by b{display:block;margin-top:3px;font-size:1.15rem;background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot .cp{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
 .dlb{display:inline-block;margin-top:12px;background:rgba(11,16,32,.45);;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:16px;padding:11px 18px;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .2s}
 .dlb:active{transform:scale(.94)}
-.cd{display:flex;align-items:center;gap:12px;border-radius:20px;padding:12px 16px;margin-bottom:14px;border-left:5px solid #0ea5e9}
+.cd{display:flex;align-items:center;gap:12px;border-radius:20px;padding:12px 16px;margin-bottom:14px;border-left:5px solid var(--a2)}
 .cd.on{border-left-color:#16a34a;background:rgba(34,197,94,.16)}
 .cd .ci{font-size:1.6rem}
 .cd small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
 .cd b{font-size:1rem}
 .tag.ends{background:#16a34a;color:#fff;font-weight:600}
-.tag.st{background:#0ea5e9;color:#fff;font-weight:600}
+.tag.st{background:var(--a2);color:#fff;font-weight:600}
 .card.done{opacity:.5}
 .tag.dur{font-weight:700}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--card:rgba(255,255,255,.85)}}
@@ -97,8 +98,8 @@ main{max-width:560px;margin:-44px auto 0;padding:0 16px 28px}
 /* ---- views, indicator, calendar, animations ---- */
 .view{display:none}.view.on{display:block}
 :root{color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:linear-gradient(135deg,rgba(49,46,129,.72),rgba(3,105,161,.6));box-shadow:0 10px 36px rgba(0,0,0,.4),inset 0 -1px 0 rgba(255,255,255,.18)}}
-:root[data-theme="dark"] .hero{background:linear-gradient(135deg,rgba(49,46,129,.72),rgba(3,105,161,.6))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:linear-gradient(135deg,color-mix(in srgb,color-mix(in srgb,var(--a1) 50%,#0b1022) 78%,transparent),color-mix(in srgb,color-mix(in srgb,var(--a2) 50%,#0b1022) 66%,transparent));box-shadow:0 10px 36px rgba(0,0,0,.4),inset 0 -1px 0 rgba(255,255,255,.18)}}
+:root[data-theme="dark"] .hero{background:linear-gradient(135deg,color-mix(in srgb,color-mix(in srgb,var(--a1) 50%,#0b1022) 78%,transparent),color-mix(in srgb,color-mix(in srgb,var(--a2) 50%,#0b1022) 66%,transparent))}
 .acts{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:12px}
 .acts .dlb{margin-top:0}
 .lsw{position:relative;display:inline-flex;padding:4px;border-radius:999px;background:rgba(11,16,32,.35);;border:1px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
@@ -115,7 +116,7 @@ html[lang=bn] h1{line-height:1.3}
 .seg button{flex:1;position:relative;z-index:1;border:0;background:transparent;color:var(--muted);font-weight:700;font-size:.86rem;padding:10px 0;border-radius:999px;cursor:pointer;transition:color .35s,transform .2s}
 .seg button.on{color:#fff}
 .seg button:active{transform:scale(.94)}
-.ind{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:14px;background:linear-gradient(135deg,rgba(79,70,229,.85),rgba(14,165,233,.8));border:1px solid rgba(255,255,255,.4);box-shadow:0 4px 16px rgba(79,70,229,.35),inset 0 1px 0 rgba(255,255,255,.4);z-index:0;opacity:0;pointer-events:none}
+.ind{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 85%,transparent),color-mix(in srgb,var(--a2) 80%,transparent));border:1px solid rgba(255,255,255,.4);box-shadow:0 4px 16px color-mix(in srgb,var(--a1) 35%,transparent),inset 0 1px 0 rgba(255,255,255,.4);z-index:0;opacity:0;pointer-events:none}
 .seg .ind{top:5px;bottom:5px;border-radius:999px}
 .ready .ind{opacity:1;transition:transform .5s cubic-bezier(.34,1.25,.5,1),width .5s cubic-bezier(.34,1.25,.5,1),opacity .4s}
 .calbox{border-radius:24px;padding:14px 12px 12px;margin-bottom:18px}
@@ -135,9 +136,9 @@ html[lang=bn] h1{line-height:1.3}
 .cell.pre{opacity:.5}
 .cell em{display:flex;gap:2px;height:5px;font-style:normal}
 .cell em u{width:4px;height:4px;border-radius:50%;display:block}
-.cell.today{border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.22)}
+.cell.today{border-color:var(--a2);box-shadow:0 0 0 3px color-mix(in srgb,var(--a2) 22%,transparent)}
 .cell.start::after{content:"\2605";position:absolute;top:2px;right:4px;font-size:.55rem;color:#f59e0b}
-.cell.sel{background:linear-gradient(135deg,rgba(79,70,229,.88),rgba(14,165,233,.82));color:#fff;border-color:rgba(255,255,255,.45);box-shadow:0 6px 18px rgba(79,70,229,.38)}
+.cell.sel{background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 88%,transparent),color-mix(in srgb,var(--a2) 82%,transparent));color:#fff;border-color:rgba(255,255,255,.45);box-shadow:0 6px 18px color-mix(in srgb,var(--a1) 38%,transparent)}
 .cell.sel em u{box-shadow:0 0 0 1px rgba(255,255,255,.85)}
 .hint{margin-top:10px;text-align:center;font-size:.72rem;color:var(--muted)}
 .empty{text-align:center;padding:28px 16px;border-radius:22px;color:var(--muted);margin-bottom:12px}
@@ -201,7 +202,7 @@ html[lang=bn] h1{line-height:1.3}
 .ahelp{margin:0 0 10px;font-size:.88rem;color:var(--muted);line-height:1.5}
 .acard label{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin:12px 0 0}
 .acard input:not([type=checkbox]):not([type=file]),.acard textarea,.acard select{display:block;width:100%;margin-top:6px;padding:12px 14px;border-radius:14px;border:1px solid var(--gb);background:var(--chip);color:var(--text);font:inherit;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s}
-.acard input:focus,.acard textarea:focus,.acard select:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.25)}
+.acard input:focus,.acard textarea:focus,.acard select:focus{border-color:var(--a1);box-shadow:0 0 0 3px color-mix(in srgb,var(--a1) 25%,transparent)}
 .acard textarea{resize:vertical;min-height:96px}
 .frow{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
 .frow>label{flex:1;min-width:130px}
@@ -209,7 +210,7 @@ html[lang=bn] h1{line-height:1.3}
 .fbtn{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:11px 16px;border-radius:14px;border:1px dashed var(--gb);background:var(--chip);color:var(--text);font-weight:700;font-size:.9rem;cursor:pointer}
 .fprev[hidden]{display:none}
 .fprev{display:block;margin-top:12px;max-width:100%;max-height:200px;border-radius:14px}
-.pbtn{display:block;width:100%;margin-top:16px;padding:14px;border:0;border-radius:16px;background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 6px 18px rgba(79,70,229,.35);transition:transform .2s,opacity .2s}
+.pbtn{display:block;width:100%;margin-top:16px;padding:14px;border:0;border-radius:16px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 6px 18px color-mix(in srgb,var(--a1) 35%,transparent);transition:transform .2s,opacity .2s}
 .pbtn:active{transform:scale(.97)}
 .pbtn[disabled]{opacity:.6}
 .gbtn{border:0;background:transparent;color:var(--muted);font-weight:700;padding:10px;cursor:pointer;text-decoration:underline}
@@ -230,10 +231,10 @@ html[lang=bn] h1{line-height:1.3}
 /* ---- Lite mode: no blur, no heavy animation (for low-end phones) ---- */
 html.lite *,html.lite *::before,html.lite *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.lite{--card:rgba(255,255,255,.9);--chip:rgba(255,255,255,.72);--shadow:0 3px 12px rgba(40,50,140,.14)}
-@media (prefers-color-scheme:dark){html.lite:not([data-theme="light"]){--card:rgba(26,28,46,.9);--chip:rgba(255,255,255,.1);--shadow:0 3px 12px rgba(0,0,0,.4)}html.lite:not([data-theme="light"]) .hero{background:linear-gradient(135deg,#312e81,#0369a1)}}
+@media (prefers-color-scheme:dark){html.lite:not([data-theme="light"]){--card:rgba(26,28,46,.9);--chip:rgba(255,255,255,.1);--shadow:0 3px 12px rgba(0,0,0,.4)}html.lite:not([data-theme="light"]) .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 50%,#0b1022),color-mix(in srgb,var(--a2) 50%,#0b1022))}}
 html.lite[data-theme="dark"]{--card:rgba(26,28,46,.9);--chip:rgba(255,255,255,.1);--shadow:0 3px 12px rgba(0,0,0,.4)}
-html.lite[data-theme="dark"] .hero{background:linear-gradient(135deg,#312e81,#0369a1)}
-html.lite .hero{background:linear-gradient(135deg,#4f46e5,#0ea5e9);box-shadow:0 6px 18px rgba(60,70,200,.3)}
+html.lite[data-theme="dark"] .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 50%,#0b1022),color-mix(in srgb,var(--a2) 50%,#0b1022))}
+html.lite .hero{background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:0 6px 18px rgba(60,70,200,.3)}
 html.lite .annpage{background:color-mix(in srgb,var(--bg1) 95%,transparent)}
 html.lite .hero .in>*,html.lite .foot .box,html.lite .load .seg,html.lite .load .days,html.lite .load .cd,html.lite .enter .cell{animation:none!important}
 html.lite .enter .card,html.lite .enter .empty,html.lite .enter .ann,html.lite .enter .dh,html.lite .enter .days,html.lite .enter .cd,html.lite .enter .calbox{animation-duration:.25s;animation-delay:0s}
@@ -252,10 +253,10 @@ html.lite .card{transition:none}
 .atabs{display:flex;gap:6px;margin-bottom:14px}
 .atabs button{flex:1;padding:11px 4px;border-radius:14px;border:1px solid var(--gb);background:var(--card);color:var(--muted);font-weight:700;font-size:.85rem;cursor:pointer;transition:background .25s,color .25s,transform .2s}
 .atabs button:active{transform:scale(.95)}
-.atabs button.on{background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;border-color:transparent}
+.atabs button.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-color:transparent}
 .dchips{display:flex;gap:6px;margin:10px 0}
 .dchips button{flex:1;padding:9px 0;border-radius:12px;border:1px solid var(--gb);background:var(--chip);color:var(--text);font-weight:700;font-size:.8rem;cursor:pointer;transition:background .25s,color .25s}
-.dchips button.on{background:#4f46e5;color:#fff;border-color:transparent}
+.dchips button.on{background:var(--a1);color:#fff;border-color:transparent}
 .rrow{padding:10px 0;border-top:1px solid var(--line)}
 .rr1,.rr2{display:flex;gap:6px;align-items:center}
 .rr2{margin-top:6px}
@@ -265,19 +266,80 @@ html.lite .card{transition:none}
 .rrow button[data-del]{width:38px;height:38px;border-radius:12px;border:1px solid var(--gb);background:var(--chip);cursor:pointer;flex:none}
 .rrow .nm{flex:1}
 details.acard summary{cursor:pointer;font-weight:800;font-size:1rem;margin-bottom:4px}
+
+/* ---- app layout: compact header + bottom tab bar ---- */
+.hrow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.hrow .inst{flex:1;font-size:.68rem;line-height:1.5;padding-top:5px}
+.hrow .lsw{flex:none}
+.lsw button{padding:7px 11px;font-size:.78rem}
+h1{font-size:1.7rem;margin:4px 0 10px}
+.chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}
+.chips::-webkit-scrollbar{display:none}
+.chips span{flex:none;white-space:nowrap;font-size:.8rem;padding:5px 11px}
+.date{margin-top:12px;font-size:.95rem;padding:7px 13px}
+main{margin-top:-24px;padding-bottom:12px}
+.foot{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 112px)}
+.foot #dl{margin-bottom:12px}
+.foot #dl .dlb{margin-top:0}
+.offl{bottom:calc(env(safe-area-inset-bottom,0px) + 92px)}
+.tabbar{position:fixed;left:0;right:0;margin:0 auto;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);width:min(calc(100% - 24px),520px);z-index:40;display:flex;gap:2px;padding:6px;border-radius:26px;background:var(--card);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--gb);box-shadow:var(--shadow),0 10px 30px rgba(0,0,0,.2)}
+.tabbar button{position:relative;z-index:1;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:var(--muted);font-weight:700;font-size:.68rem;padding:8px 2px 7px;border-radius:20px;cursor:pointer;transition:color .3s,transform .2s}
+.tabbar button span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tabbar button.on{color:#fff}
+.tabbar button:active{transform:scale(.9)}
+.tabbar svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tabbar .ind{top:6px;bottom:6px;border-radius:20px}
+.tabbar button em{position:absolute;top:2px;left:calc(50% + 7px);font-style:normal;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#ef4444;color:#fff;font-size:.62rem;display:grid;place-items:center;box-shadow:0 0 0 2px rgba(239,68,68,.25)}
+.tabbar button em[hidden]{display:none}
+.load .tabbar{animation:fadeUp .6s .3s cubic-bezier(.2,.8,.2,1) both}
+html.lite .load .tabbar{animation:none!important}
+
+:root{--a1:#4f46e5;--a2:#0ea5e9;--solid:rgba(255,255,255,.93)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--solid:rgba(24,26,44,.95)}}
+:root[data-theme="dark"]{--solid:rgba(24,26,44,.95)}
+/* ---- sticky day bar ---- */
+.days{position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;transition:background .25s,box-shadow .25s}
+.days.stuck{background:var(--solid);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+/* ---- colour picker ---- */
+.hrow{position:relative;z-index:20}
+.hr{display:flex;align-items:center;gap:8px;flex:none}
+.palb{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(11,16,32,.35);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .2s}
+.palb:active{transform:scale(.88)}
+.palb svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.palpop{position:fixed;z-index:55;top:80px;right:12px;width:232px;padding:14px;border-radius:20px;background:var(--solid);border:1px solid var(--gb);box-shadow:0 14px 36px rgba(0,0,0,.3);color:var(--text);animation:fadeUp .25s cubic-bezier(.2,.8,.2,1) both}
+.palpop[hidden]{display:none}
+.palpop .pt{font-weight:800;font-size:.9rem}
+.sws{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.sws button{aspect-ratio:1;border-radius:50%;border:3px solid transparent;cursor:pointer;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .2s,border-color .2s}
+.sws button:active{transform:scale(.88)}
+.sws button.on{border-color:var(--text);transform:scale(1.1)}
+.swc{display:flex;align-items:center;justify-content:space-between;font-size:.85rem;font-weight:700}
+.swc input{width:48px;height:34px;padding:2px;border:1px solid var(--gb);border-radius:10px;background:var(--chip);cursor:pointer}
+.palpop .gbtn{display:block;margin:8px auto 0;font-size:.82rem;padding:6px}
+
+.atabs button{font-size:.76rem!important;padding:11px 2px!important}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.stats .st{background:var(--chip);border:1px solid var(--gb);border-radius:16px;padding:12px 8px;text-align:center}
+.stats .st b{display:block;font-size:1.9rem;line-height:1.15}
+.stats .st span{font-size:.74rem;color:var(--muted);font-weight:700}
+.stats .st.live b{color:#16a34a}
+.pdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#16a34a;margin-right:6px;animation:pulse 1.4s infinite}
+.crow{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.crow span{font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--gb)}
+.rules{background:var(--chip);border:1px solid var(--gb);border-radius:12px;padding:10px;font-size:.7rem;line-height:1.4;overflow:auto;max-height:190px;white-space:pre;margin:8px 0;user-select:all}
+.priv{margin-top:6px;font-size:.7rem;color:var(--muted)}
+.priv[hidden]{display:none}
 </style>
 </head>
 <body class="load">
 <div class="bgv" aria-hidden="true"></div>
 <div class="hero"><div class="in">
-<div class="inst" data-i18n="inst">Rajshahi Government Survey Institute</div>
+<div class="hrow"><div class="inst" data-i18n="inst">Rajshahi Government Survey Institute</div><div class="hr"><button class="palb" id="palbtn" aria-label="Theme color"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.3 0 2-.9 2-1.8 0-1.2-1-1.5-1-2.7 0-1 .8-1.5 1.8-1.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/></svg></button><div class="lsw" id="lsw"><i class="ind"></i><button data-l="en">EN</button><button data-l="bn">বাংলা</button></div></div></div>
 <h1 data-i18n="title">Class Routine 2026</h1>
 <div class="chips"><span data-i18n="c1">1st Semester</span><span data-i18n="c2">Class start 11-10-2026</span><span data-i18n="c3">8:00 AM – 1:15 PM</span></div>
 <div class="date" id="date"></div>
-<div class="acts"><div id="dl"><a class="dlb" href="Class_Routine.apk" download="Class_Routine.apk" data-i18n="dl">📲 Download Android App</a></div><div class="lsw" id="lsw"><i class="ind"></i><button data-l="en">EN</button><button data-l="bn">বাংলা</button></div></div>
 </div></div>
 <main>
-<div class="seg" id="seg"><i class="ind"></i><button data-v="r" class="on" data-i18n="rt">📚 Routine</button><button data-v="c" data-i18n="cal">📅 Calendar</button><button data-v="e" data-i18n="examtab">📝 Exams</button><button data-v="a"><span data-i18n="anntab">📢 Notices</span><em id="tabbadge" hidden></em></button></div>
 <section class="view on" id="vr">
 <div class="days" id="days"></div>
 <div id="cd"></div>
@@ -295,9 +357,11 @@ details.acard summary{cursor:pointer;font-weight:800;font-size:1rem;margin-botto
 <section class="view" id="ve"><div class="dh"><h2 data-i18n="examtitle">Exam schedule</h2><span id="exc"></span></div><div id="exlist"></div></section>
 <section class="view" id="va"><div id="annlist"></div></section>
 </main>
-<footer class="foot" style="margin-top:14px"><div class="box"><div class="tools"><button class="admlink" id="admlink" data-i18n="a_link">🔐 Admin</button><button class="admlink" id="perfbtn"></button></div><div class="by"><span data-i18n="by">Created by</span><b>Sakib Sadman</b><a class="ct" href="https://sakibsadman.xyz/" target="_blank" rel="noopener"><span data-i18n="contact">Contact:</span> sakibsadman.xyz</a></div><div class="cp" data-i18n="cp">© 2026 Sakib Sadman. All rights reserved.</div></div></footer>
+<footer class="foot" style="margin-top:14px"><div class="box"><div id="dl"><a class="dlb" href="Class_Routine.apk" download="Class_Routine.apk" data-i18n="dl">📲 Download Android App</a></div><div class="tools"><button class="admlink" id="admlink" data-i18n="a_link">🔐 Admin</button><button class="admlink" id="perfbtn"></button></div><div class="by"><span data-i18n="by">Created by</span><b>Sakib Sadman</b><a class="ct" href="https://sakibsadman.xyz/" target="_blank" rel="noopener"><span data-i18n="contact">Contact:</span> sakibsadman.xyz</a></div><div class="cp" data-i18n="cp">© 2026 Sakib Sadman. All rights reserved.</div><div class="priv" id="priv" hidden data-i18n="priv">Visits are counted anonymously.</div></div></footer>
+<div class="palpop" id="palpop" hidden><div class="pt" data-i18n="pal_t">Theme color</div><div class="sws" id="sws"></div><label class="swc"><span data-i18n="pal_c">Custom</span><input type="color" id="palc" value="#4f46e5"></label><button class="gbtn" id="palr" data-i18n="pal_r">Default</button></div>
+<nav class="tabbar" id="seg" aria-label="Main"><i class="ind"></i><button data-v="r" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="tab_r">Routine</span></button><button data-v="c"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><span data-i18n="tab_c">Calendar</span></button><button data-v="e"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4h6v3H9zM9 14l2 2 4-4"/></svg><span data-i18n="tab_e">Exams</span></button><button data-v="a"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2zM10 21a2 2 0 0 0 4 0"/></svg><span data-i18n="tab_a">Notices</span><em id="tabbadge" hidden></em></button></nav>
 <div class="offl" id="offl" hidden data-i18n="off_msg">📴 Offline — showing saved data</div>
-<div class="annpage" id="adm" aria-hidden="true" role="dialog"><div class="annhead"><button id="admback" aria-label="Close">×</button><h2 data-i18n="a_title">Admin</h2><span class="ver">v15</span></div><div class="annbody" id="admbody"></div></div>
+<div class="annpage" id="adm" aria-hidden="true" role="dialog"><div class="annhead"><button id="admback" aria-label="Close">×</button><h2 data-i18n="a_title">Admin</h2><span class="ver">v19</span></div><div class="annbody" id="admbody"></div></div>
 <div class="lb" id="lb"><img alt=""></div>
 <script>
 var T={ANA:"Md. Anamul Haque",SR:"Md. Shahinur Rahman",ANS:"Abdur Nur Sardar",SH:"Md. Saruar Hossain",MR:"Md. Musfikur Rahman",GA:"Golam Azam"};
@@ -315,8 +379,8 @@ var todayName,cur,mins,isToday,lastEff,nowD,effD,DN=["Sunday","Monday","Tuesday"
 var LANG="en";
 (function(){var l="";try{l=localStorage.getItem("lang")||""}catch(e){}LANG=(l==="bn"||l==="en")?l:((navigator.language||"").toLowerCase().indexOf("bn")===0?"bn":"en")})();
 var I={
-en:{inst:"Rajshahi Government Survey Institute",title:"Class Routine 2026",c1:"1st Semester",c2:"Class start 11-10-2026",c3:"8:00 AM – 1:15 PM",dl:"📲 Download Android App",rt:"📚 Routine",cal:"📅 Calendar",today:"Today",nextlbl:"Next",nextday:"Next class day",hint:"Tap a date to see its routine · ★ first class day · 🔴 exam",by:"Created by",cp:"© 2026 Sakib Sadman. All rights reserved.",period:"Period",to:"to",room:"Room",free:"Free period",now:"NOW",fin:"Finished",clsnow:"Class now",nextcls:"Next class",alldone:"All classes finished",wkd:"Weekend",wkdmsg:"No classes on Friday &amp; Saturday",nostart:"Classes not started yet",firstcls:"First class: ",notstarted:"Not started",firstday:"First day",lab:"Lab",prevm:"Previous month",nextm:"Next month",annbtn:"Announcements",anntitle:"Announcements",annempty:"No announcements yet",back:"Back",tg_imp:"Important",tg_info:"Info",tg_upd:"Update",anntab:"📢 Notices",a_link:"🔐 Admin",a_title:"Admin",a_setup:"One-time setup",a_setup_p:"Connect this device to your GitHub repo. Your token is stored only on this device, locked with your password.",a_how:"How do I get a token?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li><li>Repository access: Only select repositories → choose this site's repo.</li><li>Permissions → Repository permissions → Contents: Read and write.</li><li>Generate, copy the token and paste it below.</li>",a_token:"GitHub token",a_repo:"Repository (owner/name)",a_branch:"Branch",a_pass:"Admin password",a_pass2:"Confirm password",a_save:"Save & continue",a_err_fields:"Enter the token and a repo like username/repo.",a_pass_short:"Password must be at least 6 characters.",a_pass_mm:"Passwords don't match.",a_err_token:"GitHub refused. Check the token, repo name and that it has Contents: Read and write.",a_nocrypto:"Secure storage is not available here. Open the live https site.",a_unlock_p:"Enter your admin password.",a_unlock:"Unlock",a_wrong:"Wrong password.",a_reset:"Reset setup",a_resetq:"Forget the saved token on this device?",a_new:"New announcement",a_ftitle:"Title",a_fbody:"Message",a_ftype:"Type",a_pin:"Pin to top",a_photo:"📷 Add photo",a_pub:"Publish",a_pubing:"Publishing…",a_pubok:"Published! Everyone will see it in about a minute.",a_need:"Write a title or a message first.",a_mine:"Posted announcements",a_del:"Delete",a_delq:"Delete this announcement?",a_lock:"Lock",a_delok:"Deleted. It disappears for everyone in about a minute.",a_e401:"Token is invalid or expired. Reset setup and paste a new token.",a_e403:"This token can't write to the repo. Create a new token: choose 'Only select repositories' (NOT 'Public repositories'), pick this repo, and set Contents: Read and write.",a_e404:"Repo or branch not found, or the token has no access to this repo. Check the repo name and branch (main or master).",a_e422:"GitHub rejected the change. Check the branch name.",contact:"Contact:",p_auto:"⚡ Performance: Auto",p_lite:"⚡ Performance: Lite",p_full:"⚡ Performance: Full",off_msg:"📴 Offline — showing saved data",examtab:"📝 Exams",examtitle:"Exam schedule",exempty:"No exams posted yet",tomorrow:"Tomorrow",a_t_n:"📢 Notice",a_t_e:"📝 Exam",a_t_r:"📚 Routine",a_xnew:"New exam",a_xtitle:"Exam name (e.g. Mid Term)",a_xsubj:"Subject",a_xother:"Or type another subject",a_xdate:"Date",a_xstart:"Start time",a_xend:"End time",a_xroom:"Room",a_xnote:"Note",a_xneed:"Pick a date and a subject or name.",a_xlist:"Posted exams",a_xdelq:"Delete this exam?",a_rt:"Edit routine",a_rhelp:"Pick a day, edit its periods, then press Publish. Each period is 45 minutes, starting at 8:00.",a_radd:"Add period",a_rnone:"No periods for this day.",a_rsub:"Subjects",a_rsadd:"Add subject",a_rtea:"Teachers",a_rtadd:"Add teacher",a_rpub:"Publish routine",a_roverlap:"Periods overlap",a_rok:"Routine published! Everyone will see it soon.",a_rsdelq:"This subject is used in the routine. Remove it and make those periods free?",a_rname:"Name",a_rlab:"Lab / note"},
-bn:{inst:"রাজশাহী সরকারি জরিপ ইনস্টিটিউট",title:"ক্লাস রুটিন ২০২৬",c1:"১ম সেমিস্টার",c2:"ক্লাস শুরু ১১-১০-২০২৬",c3:"সকাল ৮:০০ – দুপুর ১:১৫",dl:"📲 অ্যান্ড্রয়েড অ্যাপ ডাউনলোড",rt:"📚 রুটিন",cal:"📅 ক্যালেন্ডার",today:"আজ",nextlbl:"পরবর্তী",nextday:"পরবর্তী ক্লাসের দিন",hint:"তারিখে ট্যাপ করে রুটিন দেখুন · ★ প্রথম ক্লাসের দিন · 🔴 পরীক্ষা",by:"তৈরি করেছেন",cp:"© ২০২৬ Sakib Sadman. সর্বস্বত্ব সংরক্ষিত।",period:"পিরিয়ড",to:"থেকে",room:"রুম",free:"ফাঁকা পিরিয়ড",now:"এখন",fin:"শেষ",clsnow:"এখন ক্লাস চলছে",nextcls:"পরবর্তী ক্লাস",alldone:"আজকের সব ক্লাস শেষ",wkd:"সাপ্তাহিক ছুটি",wkdmsg:"শুক্র ও শনিবার ক্লাস নেই",nostart:"ক্লাস এখনো শুরু হয়নি",firstcls:"প্রথম ক্লাস: ",notstarted:"শুরু হয়নি",firstday:"প্রথম দিন",lab:"ল্যাব",prevm:"আগের মাস",nextm:"পরের মাস",annbtn:"ঘোষণা",anntitle:"ঘোষণা",annempty:"এখনো কোনো ঘোষণা নেই",back:"ফিরে যান",tg_imp:"গুরুত্বপূর্ণ",tg_info:"তথ্য",tg_upd:"আপডেট",anntab:"📢 ঘোষণা",a_link:"🔐 অ্যাডমিন",a_title:"অ্যাডমিন",a_setup:"একবারের সেটআপ",a_setup_p:"এই ডিভাইসকে আপনার GitHub রিপোর সাথে যুক্ত করুন। টোকেন শুধু এই ডিভাইসে, আপনার পাসওয়ার্ড দিয়ে লক করা থাকবে।",a_how:"টোকেন কীভাবে পাবো?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token।</li><li>Repository access: Only select repositories → এই সাইটের রিপো বেছে নিন।</li><li>Permissions → Repository permissions → Contents: Read and write।</li><li>Generate করে টোকেন কপি করে নিচে পেস্ট করুন।</li>",a_token:"GitHub টোকেন",a_repo:"রিপোজিটরি (owner/name)",a_branch:"ব্রাঞ্চ",a_pass:"অ্যাডমিন পাসওয়ার্ড",a_pass2:"পাসওয়ার্ড আবার দিন",a_save:"সেভ করে এগিয়ে যান",a_err_fields:"টোকেন এবং username/repo ফরম্যাটে রিপো লিখুন।",a_pass_short:"পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",a_pass_mm:"পাসওয়ার্ড মেলেনি।",a_err_token:"GitHub গ্রহণ করেনি। টোকেন, রিপোর নাম এবং Contents: Read and write অনুমতি দেখুন।",a_nocrypto:"এখানে নিরাপদ স্টোরেজ চলছে না। লাইভ https সাইট খুলুন।",a_unlock_p:"অ্যাডমিন পাসওয়ার্ড দিন।",a_unlock:"আনলক",a_wrong:"ভুল পাসওয়ার্ড।",a_reset:"সেটআপ রিসেট",a_resetq:"এই ডিভাইসে সেভ করা টোকেন মুছে ফেলবেন?",a_new:"নতুন ঘোষণা",a_ftitle:"শিরোনাম",a_fbody:"বার্তা",a_ftype:"ধরন",a_pin:"উপরে পিন করুন",a_photo:"📷 ছবি যোগ করুন",a_pub:"প্রকাশ করুন",a_pubing:"প্রকাশ হচ্ছে…",a_pubok:"প্রকাশ হয়েছে! প্রায় এক মিনিটের মধ্যে সবাই দেখতে পাবে।",a_need:"আগে শিরোনাম বা বার্তা লিখুন।",a_mine:"প্রকাশিত ঘোষণা",a_del:"মুছুন",a_delq:"এই ঘোষণা মুছে ফেলবেন?",a_lock:"লক করুন",a_delok:"মুছে ফেলা হয়েছে। প্রায় এক মিনিটে সবার কাছ থেকে সরে যাবে।",a_e401:"টোকেন ভুল বা মেয়াদোত্তীর্ণ। সেটআপ রিসেট করে নতুন টোকেন দিন।",a_e403:"এই টোকেন দিয়ে রিপোতে লেখা যাচ্ছে না। নতুন টোকেন বানান: 'Only select repositories' বেছে নিন ('Public repositories' নয়), এই রিপো দিন এবং Contents: Read and write করুন।",a_e404:"রিপো বা ব্রাঞ্চ পাওয়া যায়নি, অথবা টোকেনের এই রিপোতে অ্যাক্সেস নেই। রিপোর নাম ও ব্রাঞ্চ (main বা master) দেখুন।",a_e422:"GitHub পরিবর্তনটি নেয়নি। ব্রাঞ্চের নাম দেখুন।",contact:"যোগাযোগ:",p_auto:"⚡ পারফরম্যান্স: অটো",p_lite:"⚡ পারফরম্যান্স: লাইট",p_full:"⚡ পারফরম্যান্স: ফুল",off_msg:"📴 অফলাইন — সংরক্ষিত তথ্য দেখানো হচ্ছে",examtab:"📝 পরীক্ষা",examtitle:"পরীক্ষার সময়সূচি",exempty:"এখনো কোনো পরীক্ষা দেওয়া হয়নি",tomorrow:"আগামীকাল",a_t_n:"📢 নোটিশ",a_t_e:"📝 পরীক্ষা",a_t_r:"📚 রুটিন",a_xnew:"নতুন পরীক্ষা",a_xtitle:"পরীক্ষার নাম (যেমন Mid Term)",a_xsubj:"বিষয়",a_xother:"অথবা অন্য বিষয় লিখুন",a_xdate:"তারিখ",a_xstart:"শুরুর সময়",a_xend:"শেষের সময়",a_xroom:"রুম",a_xnote:"নোট",a_xneed:"তারিখ এবং বিষয় বা নাম দিন।",a_xlist:"প্রকাশিত পরীক্ষা",a_xdelq:"এই পরীক্ষা মুছে ফেলবেন?",a_rt:"রুটিন এডিট",a_rhelp:"একটি দিন বেছে পিরিয়ড এডিট করুন, তারপর Publish চাপুন। প্রতিটি পিরিয়ড ৪৫ মিনিট, শুরু সকাল ৮:০০।",a_radd:"পিরিয়ড যোগ করুন",a_rnone:"এই দিনে কোনো পিরিয়ড নেই।",a_rsub:"বিষয়সমূহ",a_rsadd:"বিষয় যোগ করুন",a_rtea:"শিক্ষকগণ",a_rtadd:"শিক্ষক যোগ করুন",a_rpub:"রুটিন প্রকাশ করুন",a_roverlap:"পিরিয়ড একে অপরের সাথে মিলে যাচ্ছে",a_rok:"রুটিন প্রকাশ হয়েছে! শীঘ্রই সবাই দেখতে পাবে।",a_rsdelq:"এই বিষয়টি রুটিনে ব্যবহৃত হচ্ছে। মুছলে ওই পিরিয়ডগুলো ফাঁকা হয়ে যাবে। মুছবেন?",a_rname:"নাম",a_rlab:"ল্যাব / নোট"}};
+en:{inst:"Rajshahi Government Survey Institute",title:"Class Routine 2026",c1:"1st Semester",c2:"Class start 11-10-2026",c3:"8:00 AM – 1:15 PM",dl:"📲 Download Android App",rt:"📚 Routine",cal:"📅 Calendar",today:"Today",nextlbl:"Next",nextday:"Next class day",hint:"Tap a date to see its routine · ★ first class day · 🔴 exam",by:"Created by",cp:"© 2026 Sakib Sadman. All rights reserved.",period:"Period",to:"to",room:"Room",free:"Free period",now:"NOW",fin:"Finished",clsnow:"Class now",nextcls:"Next class",alldone:"All classes finished",wkd:"Weekend",wkdmsg:"No classes on Friday &amp; Saturday",nostart:"Classes not started yet",firstcls:"First class: ",notstarted:"Not started",firstday:"First day",lab:"Lab",prevm:"Previous month",nextm:"Next month",annbtn:"Announcements",anntitle:"Announcements",annempty:"No announcements yet",back:"Back",tg_imp:"Important",tg_info:"Info",tg_upd:"Update",anntab:"📢 Notices",a_link:"🔐 Admin",a_title:"Admin",a_setup:"One-time setup",a_setup_p:"Connect this device to your GitHub repo. Your token is stored only on this device, locked with your password.",a_how:"How do I get a token?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li><li>Repository access: Only select repositories → choose this site's repo.</li><li>Permissions → Repository permissions → Contents: Read and write.</li><li>Generate, copy the token and paste it below.</li>",a_token:"GitHub token",a_repo:"Repository (owner/name)",a_branch:"Branch",a_pass:"Admin password",a_pass2:"Confirm password",a_save:"Save & continue",a_err_fields:"Enter the token and a repo like username/repo.",a_pass_short:"Password must be at least 6 characters.",a_pass_mm:"Passwords don't match.",a_err_token:"GitHub refused. Check the token, repo name and that it has Contents: Read and write.",a_nocrypto:"Secure storage is not available here. Open the live https site.",a_unlock_p:"Enter your admin password.",a_unlock:"Unlock",a_wrong:"Wrong password.",a_reset:"Reset setup",a_resetq:"Forget the saved token on this device?",a_new:"New announcement",a_ftitle:"Title",a_fbody:"Message",a_ftype:"Type",a_pin:"Pin to top",a_photo:"📷 Add photo",a_pub:"Publish",a_pubing:"Publishing…",a_pubok:"Published! Everyone will see it in about a minute.",a_need:"Write a title or a message first.",a_mine:"Posted announcements",a_del:"Delete",a_delq:"Delete this announcement?",a_lock:"Lock",a_delok:"Deleted. It disappears for everyone in about a minute.",a_e401:"Token is invalid or expired. Reset setup and paste a new token.",a_e403:"This token can't write to the repo. Create a new token: choose 'Only select repositories' (NOT 'Public repositories'), pick this repo, and set Contents: Read and write.",a_e404:"Repo or branch not found, or the token has no access to this repo. Check the repo name and branch (main or master).",a_e422:"GitHub rejected the change. Check the branch name.",contact:"Contact:",p_auto:"⚡ Performance: Auto",p_lite:"⚡ Performance: Lite",p_full:"⚡ Performance: Full",off_msg:"📴 Offline — showing saved data",examtab:"📝 Exams",examtitle:"Exam schedule",exempty:"No exams posted yet",tomorrow:"Tomorrow",a_t_n:"📢 Notice",a_t_e:"📝 Exam",a_t_r:"📚 Routine",a_xnew:"New exam",a_xtitle:"Exam name (e.g. Mid Term)",a_xsubj:"Subject",a_xother:"Or type another subject",a_xdate:"Date",a_xstart:"Start time",a_xend:"End time",a_xroom:"Room",a_xnote:"Note",a_xneed:"Pick a date and a subject or name.",a_xlist:"Posted exams",a_xdelq:"Delete this exam?",a_rt:"Edit routine",a_rhelp:"Pick a day, edit its periods, then press Publish. Each period is 45 minutes, starting at 8:00.",a_radd:"Add period",a_rnone:"No periods for this day.",a_rsub:"Subjects",a_rsadd:"Add subject",a_rtea:"Teachers",a_rtadd:"Add teacher",a_rpub:"Publish routine",a_roverlap:"Periods overlap",a_rok:"Routine published! Everyone will see it soon.",a_rsdelq:"This subject is used in the routine. Remove it and make those periods free?",a_rname:"Name",a_rlab:"Lab / note",tab_r:"Routine",tab_c:"Calendar",tab_e:"Exams",tab_a:"Notices",pal_t:"Theme color",pal_c:"Custom",pal_r:"Default",priv:"Visits are counted anonymously.",a_t_s:"📊 Stats",s_title:"Live visitors",s_on:"Online now",s_today:"Today",s_total:"Total visitors",s_opens:"Total opens",s_setup:"Connect visitor counter",s_help:"A free Firebase database keeps anonymous counts. Only you can see them here.",s_steps:'<li>Open <b>console.firebase.google.com</b> → Add project → give it a name → Create project.</li><li>Left menu: Build → <b>Realtime Database</b> → Create database → pick a location → <b>Start in locked mode</b>.</li><li>Open the <b>Rules</b> tab, replace everything with the rules below and press <b>Publish</b>.</li><li>Open the <b>Data</b> tab and copy the database URL at the top (like https://xxxx-default-rtdb.firebaseio.com). Paste it here.</li>',s_rules:"Rules to paste in Firebase → Realtime Database → Rules:",s_copy:"Copy rules",s_copied:"Copied!",s_url:"Database URL",s_save:"Connect",s_bad:"Cannot reach this database. Check the URL.",s_denied:"Permission denied. Publish the rules first.",s_badurl:"That does not look like a Firebase database URL.",s_disc:"Disconnect",s_disq:"Stop counting visitors?",s_live:"Updates every few seconds. This device is not counted.",s_set:"Settings",s_conn:"Connected:",s_app:"App",s_web:"Browser",s_load:"Loading…"},
+bn:{inst:"রাজশাহী সরকারি সার্ভে ইনস্টিটিউট",title:"ক্লাস রুটিন ২০২৬",c1:"১ম সেমিস্টার",c2:"ক্লাস শুরু ১১-১০-২০২৬",c3:"সকাল ৮:০০ – দুপুর ১:১৫",dl:"📲 অ্যান্ড্রয়েড অ্যাপ ডাউনলোড",rt:"📚 রুটিন",cal:"📅 ক্যালেন্ডার",today:"আজ",nextlbl:"পরবর্তী",nextday:"পরবর্তী ক্লাসের দিন",hint:"তারিখে ট্যাপ করে রুটিন দেখুন · ★ প্রথম ক্লাসের দিন · 🔴 পরীক্ষা",by:"তৈরি করেছেন",cp:"© ২০২৬ Sakib Sadman. সর্বস্বত্ব সংরক্ষিত।",period:"পিরিয়ড",to:"থেকে",room:"রুম",free:"ফাঁকা পিরিয়ড",now:"এখন",fin:"শেষ",clsnow:"এখন ক্লাস চলছে",nextcls:"পরবর্তী ক্লাস",alldone:"আজকের সব ক্লাস শেষ",wkd:"সাপ্তাহিক ছুটি",wkdmsg:"শুক্র ও শনিবার ক্লাস নেই",nostart:"ক্লাস এখনো শুরু হয়নি",firstcls:"প্রথম ক্লাস: ",notstarted:"শুরু হয়নি",firstday:"প্রথম দিন",lab:"ল্যাব",prevm:"আগের মাস",nextm:"পরের মাস",annbtn:"ঘোষণা",anntitle:"ঘোষণা",annempty:"এখনো কোনো ঘোষণা নেই",back:"ফিরে যান",tg_imp:"গুরুত্বপূর্ণ",tg_info:"তথ্য",tg_upd:"আপডেট",anntab:"📢 ঘোষণা",a_link:"🔐 অ্যাডমিন",a_title:"অ্যাডমিন",a_setup:"একবারের সেটআপ",a_setup_p:"এই ডিভাইসকে আপনার GitHub রিপোর সাথে যুক্ত করুন। টোকেন শুধু এই ডিভাইসে, আপনার পাসওয়ার্ড দিয়ে লক করা থাকবে।",a_how:"টোকেন কীভাবে পাবো?",a_steps:"<li>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token।</li><li>Repository access: Only select repositories → এই সাইটের রিপো বেছে নিন।</li><li>Permissions → Repository permissions → Contents: Read and write।</li><li>Generate করে টোকেন কপি করে নিচে পেস্ট করুন।</li>",a_token:"GitHub টোকেন",a_repo:"রিপোজিটরি (owner/name)",a_branch:"ব্রাঞ্চ",a_pass:"অ্যাডমিন পাসওয়ার্ড",a_pass2:"পাসওয়ার্ড আবার দিন",a_save:"সেভ করে এগিয়ে যান",a_err_fields:"টোকেন এবং username/repo ফরম্যাটে রিপো লিখুন।",a_pass_short:"পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",a_pass_mm:"পাসওয়ার্ড মেলেনি।",a_err_token:"GitHub গ্রহণ করেনি। টোকেন, রিপোর নাম এবং Contents: Read and write অনুমতি দেখুন।",a_nocrypto:"এখানে নিরাপদ স্টোরেজ চলছে না। লাইভ https সাইট খুলুন।",a_unlock_p:"অ্যাডমিন পাসওয়ার্ড দিন।",a_unlock:"আনলক",a_wrong:"ভুল পাসওয়ার্ড।",a_reset:"সেটআপ রিসেট",a_resetq:"এই ডিভাইসে সেভ করা টোকেন মুছে ফেলবেন?",a_new:"নতুন ঘোষণা",a_ftitle:"শিরোনাম",a_fbody:"বার্তা",a_ftype:"ধরন",a_pin:"উপরে পিন করুন",a_photo:"📷 ছবি যোগ করুন",a_pub:"প্রকাশ করুন",a_pubing:"প্রকাশ হচ্ছে…",a_pubok:"প্রকাশ হয়েছে! প্রায় এক মিনিটের মধ্যে সবাই দেখতে পাবে।",a_need:"আগে শিরোনাম বা বার্তা লিখুন।",a_mine:"প্রকাশিত ঘোষণা",a_del:"মুছুন",a_delq:"এই ঘোষণা মুছে ফেলবেন?",a_lock:"লক করুন",a_delok:"মুছে ফেলা হয়েছে। প্রায় এক মিনিটে সবার কাছ থেকে সরে যাবে।",a_e401:"টোকেন ভুল বা মেয়াদোত্তীর্ণ। সেটআপ রিসেট করে নতুন টোকেন দিন।",a_e403:"এই টোকেন দিয়ে রিপোতে লেখা যাচ্ছে না। নতুন টোকেন বানান: 'Only select repositories' বেছে নিন ('Public repositories' নয়), এই রিপো দিন এবং Contents: Read and write করুন।",a_e404:"রিপো বা ব্রাঞ্চ পাওয়া যায়নি, অথবা টোকেনের এই রিপোতে অ্যাক্সেস নেই। রিপোর নাম ও ব্রাঞ্চ (main বা master) দেখুন।",a_e422:"GitHub পরিবর্তনটি নেয়নি। ব্রাঞ্চের নাম দেখুন।",contact:"যোগাযোগ:",p_auto:"⚡ পারফরম্যান্স: অটো",p_lite:"⚡ পারফরম্যান্স: লাইট",p_full:"⚡ পারফরম্যান্স: ফুল",off_msg:"📴 অফলাইন — সংরক্ষিত তথ্য দেখানো হচ্ছে",examtab:"📝 পরীক্ষা",examtitle:"পরীক্ষার সময়সূচি",exempty:"এখনো কোনো পরীক্ষা দেওয়া হয়নি",tomorrow:"আগামীকাল",a_t_n:"📢 নোটিশ",a_t_e:"📝 পরীক্ষা",a_t_r:"📚 রুটিন",a_xnew:"নতুন পরীক্ষা",a_xtitle:"পরীক্ষার নাম (যেমন Mid Term)",a_xsubj:"বিষয়",a_xother:"অথবা অন্য বিষয় লিখুন",a_xdate:"তারিখ",a_xstart:"শুরুর সময়",a_xend:"শেষের সময়",a_xroom:"রুম",a_xnote:"নোট",a_xneed:"তারিখ এবং বিষয় বা নাম দিন।",a_xlist:"প্রকাশিত পরীক্ষা",a_xdelq:"এই পরীক্ষা মুছে ফেলবেন?",a_rt:"রুটিন এডিট",a_rhelp:"একটি দিন বেছে পিরিয়ড এডিট করুন, তারপর Publish চাপুন। প্রতিটি পিরিয়ড ৪৫ মিনিট, শুরু সকাল ৮:০০।",a_radd:"পিরিয়ড যোগ করুন",a_rnone:"এই দিনে কোনো পিরিয়ড নেই।",a_rsub:"বিষয়সমূহ",a_rsadd:"বিষয় যোগ করুন",a_rtea:"শিক্ষকগণ",a_rtadd:"শিক্ষক যোগ করুন",a_rpub:"রুটিন প্রকাশ করুন",a_roverlap:"পিরিয়ড একে অপরের সাথে মিলে যাচ্ছে",a_rok:"রুটিন প্রকাশ হয়েছে! শীঘ্রই সবাই দেখতে পাবে।",a_rsdelq:"এই বিষয়টি রুটিনে ব্যবহৃত হচ্ছে। মুছলে ওই পিরিয়ডগুলো ফাঁকা হয়ে যাবে। মুছবেন?",a_rname:"নাম",a_rlab:"ল্যাব / নোট",tab_r:"রুটিন",tab_c:"ক্যালেন্ডার",tab_e:"পরীক্ষা",tab_a:"ঘোষণা",pal_t:"থিমের রং",pal_c:"নিজের পছন্দ",pal_r:"ডিফল্ট",priv:"ভিজিট বেনামে গোনা হয়।",a_t_s:"📊 পরিসংখ্যান",s_title:"লাইভ ভিজিটর",s_on:"এখন অনলাইনে",s_today:"আজ",s_total:"মোট ভিজিটর",s_opens:"মোট ওপেন",s_setup:"ভিজিটর কাউন্টার যুক্ত করুন",s_help:"একটি বিনামূল্যের Firebase ডাটাবেসে বেনামী গণনা জমা থাকে। শুধু আপনি এখানে দেখতে পারবেন।",s_steps:'<li><b>console.firebase.google.com</b> এ যান → Add project → একটি নাম দিন → Create project।</li><li>বাম মেনু: Build → <b>Realtime Database</b> → Create database → লোকেশন বেছে নিন → <b>Start in locked mode</b>।</li><li><b>Rules</b> ট্যাব খুলে সব মুছে নিচের rules বসান এবং <b>Publish</b> চাপুন।</li><li><b>Data</b> ট্যাবের উপরে ডাটাবেস URL (যেমন https://xxxx-default-rtdb.firebaseio.com) কপি করে এখানে পেস্ট করুন।</li>',s_rules:"Firebase → Realtime Database → Rules এ যে rules বসাতে হবে:",s_copy:"Rules কপি",s_copied:"কপি হয়েছে!",s_url:"ডাটাবেস URL",s_save:"যুক্ত করুন",s_bad:"এই ডাটাবেসে পৌঁছানো যাচ্ছে না। URL দেখুন।",s_denied:"অনুমতি নেই। আগে rules Publish করুন।",s_badurl:"এটি Firebase ডাটাবেস URL বলে মনে হচ্ছে না।",s_disc:"বিচ্ছিন্ন করুন",s_disq:"ভিজিটর গণনা বন্ধ করবেন?",s_live:"কয়েক সেকেন্ড পরপর আপডেট হয়। এই ডিভাইস গোনা হয় না।",s_set:"সেটিংস",s_conn:"যুক্ত আছে:",s_app:"অ্যাপ",s_web:"ব্রাউজার",s_load:"লোড হচ্ছে…"}};
 function t(k){return I[LANG][k]}
 var BD="০১২৩৪৫৬৭৮৯";
 function nb(x){x=String(x);return LANG==="bn"?x.replace(/[0-9]/g,function(d){return BD.charAt(d)}):x}
@@ -451,11 +515,11 @@ function setView(v){
   from.style.setProperty("--dir",dir);from.classList.add("leave");
   setTimeout(function(){
     from.classList.remove("on","leave","enter");
-    to.style.setProperty("--dir",dir);to.classList.add("on");
+    to.style.setProperty("--dir",dir);to.classList.add("on");window.scrollTo({top:0,behavior:"instant"});
     if(v==="c"){buildGrid();renderSel()}else if(v==="e"){renderEx();loadExams()}else if(v==="a"){calcNew();$al._h=null;renderAnn();loadAnn();setTimeout(function(){markSeen();badge()},800)}else{markDays();renderDay()}
     void to.offsetWidth;to.classList.add("enter");
     setTimeout(function(){to.classList.remove("enter")},1100);
-    shown=v;vbusy=false;
+    shown=v;vbusy=false;beat();
     if(want!==shown)setView(want)
   },170)}
 [].forEach.call(segB,function(b){b.onclick=function(){setView(b.dataset.v)}});
@@ -635,16 +699,16 @@ function renderEx(){
   document.getElementById("exc").textContent=up.length?(LANG==="bn"?"আসছে: "+nb(up.length):up.length+" upcoming"):"";
   setHTML($ex,list.length?list.map(exCard).join(""):(exLoaded?'<div class="empty"><b>📝</b><span>'+t("exempty")+'</span></div>':""))}
 function loadExams(){fetchDoc("exams.json").then(function(b){exLoaded=true;if(b&&Array.isArray(b.items)){EX=b.items;buildGrid(1);renderSel()}renderEx()}).catch(function(){exLoaded=true;renderEx()})}
-function loadAll(){loadAnn();loadExams();loadRoutine()}
+function loadAll(){loadAnn();loadExams();loadRoutine();loadCfg()}
 /* ----- admin: tabs, exams, routine editor ----- */
 function panel(){
-  $admb.innerHTML='<div class="atabs" id="atabs"><button data-t="n">'+t("a_t_n")+'</button><button data-t="e">'+t("a_t_e")+'</button><button data-t="r">'+t("a_t_r")+'</button></div><div id="abody"></div><div style="text-align:center"><button class="gbtn" id="f_lock">'+t("a_lock")+'</button></div>';
+  $admb.innerHTML='<div class="atabs" id="atabs"><button data-t="n">'+t("a_t_n")+'</button><button data-t="e">'+t("a_t_e")+'</button><button data-t="r">'+t("a_t_r")+'</button><button data-t="s">'+t("a_t_s")+'</button></div><div id="abody"></div><div style="text-align:center"><button class="gbtn" id="f_lock">'+t("a_lock")+'</button></div>';
   [].forEach.call($i("atabs").querySelectorAll("button"),function(b){b.onclick=function(){admTab=b.dataset.t;admBody()}});
   $i("f_lock").onclick=function(){C=null;admRender()};
   admBody()}
 function admBody(){
   [].forEach.call($i("atabs").querySelectorAll("button"),function(b){b.classList.toggle("on",b.dataset.t===admTab)});
-  if(admTab==="e")examV();else if(admTab==="r")routineV();else noticeV()}
+  clearInterval(statT);if(admTab==="s")statsV();else if(admTab==="e")examV();else if(admTab==="r")routineV();else noticeV()}
 function opts(map,sel,blank){return(blank===undefined?"":'<option value="">'+blank+'</option>')+Object.keys(map).map(function(k){return '<option value="'+esc(k)+'"'+(k===sel?' selected':'')+'>'+esc(typeof map[k]==="string"?map[k]:map[k][0])+'</option>'}).join("")}
 function examV(){
   $i("abody").innerHTML='<div class="acard"><h3>'+t("a_xnew")+'</h3>'
@@ -726,6 +790,100 @@ function pubRoutine(){
   Object.keys(RD.teachers).forEach(function(k){if(RD.teachers[k].trim())teas[k]=RD.teachers[k].trim()});
   var old=btn.textContent;busy(btn,true,t("a_pubing"));msg(m,"");
   updDoc("routine.json",function(o){o.subjects=subs;o.teachers=teas;o.days=days;return o},"Update routine").then(function(no){RD=null;window._rsig=null;applyRoutineAll(no);msg(m,t("a_rok"),1);routineV();msg($i("r_m"),t("a_rok"),1)}).catch(function(e){msg(m,errMsg(e))}).then(function(){var b=$i("r_pub");if(b)busy(b,false,t("a_rpub"))})}
+/* ----- theme colour + sticky day bar ----- */
+var PAL=[["#4f46e5","#0ea5e9"],["#059669","#14b8a6"],["#f97316","#ec4899"],["#db2777","#a855f7"],["#7c3aed","#d946ef"],["#0284c7","#06b6d4"],["#d97706","#f59e0b"],["#334155","#64748b"]],ACC=PAL[0];
+try{var _ac=JSON.parse(localStorage.getItem("accent")||"null");if(_ac&&_ac[0]&&_ac[1])ACC=_ac}catch(e){}
+function hexRgb(h){h=h.replace("#","");return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]}
+function rgbHex(r,g,b){return"#"+[r,g,b].map(function(v){return("0"+Math.round(Math.max(0,Math.min(255,v))).toString(16)).slice(-2)}).join("")}
+function mixHex(a,b,t){var x=hexRgb(a),y=hexRgb(b);return rgbHex(x[0]*(1-t)+y[0]*t,x[1]*(1-t)+y[1]*t,x[2]*(1-t)+y[2]*t)}
+function nextHue(a){
+  var c=hexRgb(a),r=c[0]/255,g=c[1]/255,b=c[2]/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,h=0,s=0,d=mx-mn;
+  if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6}
+  h=(h+.1)%1;l=Math.min(.6,l+.08);s=Math.max(.4,s);
+  function f(p,q,t){if(t<0)t+=1;if(t>1)t-=1;return t<1/6?p+(q-p)*6*t:t<1/2?q:t<2/3?p+(q-p)*(2/3-t)*6:p}
+  var q=l<.5?l*(1+s):l+s-l*s,p=2*l-q;
+  return rgbHex(f(p,q,h+1/3)*255,f(p,q,h)*255,f(p,q,h-1/3)*255)}
+function applyAccent(a,b,save){
+  ACC=[a,b];var st=document.documentElement.style;st.setProperty("--a1",a);st.setProperty("--a2",b);
+  var m=document.querySelectorAll('meta[name="theme-color"]');if(m[0])m[0].setAttribute("content",a);if(m[1])m[1].setAttribute("content",mixHex(a,"#0b1022",.65));
+  if(save){try{localStorage.setItem("accent",JSON.stringify(ACC))}catch(e){}}
+  buildSw();var c=$i("palc");if(c)c.value=a}
+function buildSw(){$i("sws").innerHTML=PAL.map(function(p,i){return '<button data-i="'+i+'" class="'+(p[0]===ACC[0]?"on":"")+'" style="background:linear-gradient(135deg,'+p[0]+','+p[1]+')" aria-label="'+p[0]+'"></button>'}).join("")}
+function initPal(){
+  var pop=$i("palpop");
+  $i("palbtn").onclick=function(e){e.stopPropagation();if(pop.hidden){var r=this.getBoundingClientRect();pop.style.top=(r.bottom+8)+"px"}pop.hidden=!pop.hidden};
+  window.addEventListener("scroll",function(){pop.hidden=true},{passive:true});
+  pop.addEventListener("click",function(e){e.stopPropagation();var b=e.target.closest("#sws button");if(b){var p=PAL[+b.dataset.i];applyAccent(p[0],p[1],true)}});
+  $i("palc").addEventListener("input",function(){applyAccent(this.value,nextHue(this.value),true)});
+  $i("palr").onclick=function(){try{localStorage.removeItem("accent")}catch(e){}applyAccent(PAL[0][0],PAL[0][1],false)};
+  document.addEventListener("click",function(){pop.hidden=true});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")pop.hidden=true});
+  applyAccent(ACC[0],ACC[1],false)}
+function initSticky(){
+  var s=document.createElement("div");s.style.cssText="height:1px;margin-top:-1px";$vr.insertBefore(s,$d);
+  if(window.IntersectionObserver)new IntersectionObserver(function(e){$d.classList.toggle("stuck",!e[0].isIntersecting&&e[0].boundingClientRect.top<0)},{rootMargin:"-10px 0px 0px 0px"}).observe(s)}
+/* ----- visitor counter (Firebase REST) ----- */
+var FB="",cid="",hbT=0,FBA="",skew=null,statT=0,trackBound=false;
+function dayKey(){var d=new Date();return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
+function fbx(base,path,method,body,qs,keep){return fetch(base+path+".json"+(qs||""),{method:method||"GET",body:body===undefined?undefined:JSON.stringify(body),keepalive:!!keep}).then(function(r){if(r.status===401||r.status===403)throw "denied";if(!r.ok)throw r.status;return r.json().catch(function(){return null})})}
+function fbc(path,method,body,keep){return fbx(FB,path,method,body,"",keep)}
+function getCid(){try{var c=localStorage.getItem("cid");if(!c){c=Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);localStorage.setItem("cid",c)}return c}catch(e){return "x"+Math.random().toString(36).slice(2,8)}}
+function isApp(){return (window.matchMedia("(display-mode: standalone)").matches||navigator.standalone||/wv\)/.test(navigator.userAgent))?1:0}
+function beat(){if(FB)fbc("/presence/"+cid,"PUT",{t:{".sv":"timestamp"},a:isApp(),p:shown}).catch(function(){})}
+function leave(){if(FB&&cid)try{fetch(FB+"/presence/"+cid+".json",{method:"DELETE",keepalive:true}).catch(function(){})}catch(e){}}
+function stopTrack(){clearInterval(hbT);FB="";var p=$i("priv");if(p)p.hidden=true}
+function startTrack(url){
+  if(!url){if(FB)stopTrack();return}
+  if(FB===url)return;
+  try{if(localStorage.getItem("adm"))return}catch(e){}
+  FB=url;cid=getCid();
+  var first=true,day=String(dayKey());
+  try{first=!sessionStorage.getItem("vis");sessionStorage.setItem("vis","1")}catch(e){}
+  try{
+    if(!localStorage.getItem("cidSent")){fbc("/visitors/"+cid,"PUT",{f:{".sv":"timestamp"},l:{".sv":"timestamp"},a:isApp(),g:LANG}).then(function(){try{localStorage.setItem("cidSent","1")}catch(e){}}).catch(function(){})}
+    else if(first)fbc("/visitors/"+cid+"/l","PUT",{".sv":"timestamp"}).catch(function(){});
+    if(localStorage.getItem("dayMark")!==day)fbc("/days/"+day+"/"+cid,"PUT",1).then(function(){try{localStorage.setItem("dayMark",day)}catch(e){}}).catch(function(){})
+  }catch(e){}
+  if(first)fbc("/visits/total","PUT",{".sv":{"increment":1}}).catch(function(){});
+  beat();clearInterval(hbT);hbT=setInterval(function(){if(!document.hidden)beat()},40000);
+  if(!trackBound){trackBound=true;
+    document.addEventListener("visibilitychange",function(){if(!FB)return;if(document.hidden)leave();else beat()});
+    window.addEventListener("pagehide",leave)}
+  var p=$i("priv");if(p)p.hidden=false}
+function loadCfg(){fetchDoc("config.json").then(function(b){if(b)startTrack(b.fb||"")}).catch(function(){})}
+/* ----- admin: stats tab ----- */
+var RULES='{\n  "rules": {\n    "presence": { ".read": true, "$id": { ".write": "$id.length <= 24" } },\n    "visitors": { ".read": true, "$id": { ".write": "$id.length <= 24" } },\n    "days": { "$day": { ".read": true, "$id": { ".write": "$id.length <= 24" } } },\n    "visits": { ".read": true, ".write": true }\n  }\n}';
+function statsV(){
+  clearInterval(statT);
+  $i("abody").innerHTML='<div class="acard"><p class="ahelp">'+t("s_load")+'</p></div>';
+  getRemoteDoc("config.json").then(function(r){FBA=r.o.fb||"";drawStats()}).catch(function(e){$i("abody").innerHTML='<div class="acard"><div class="amsg">'+esc(errMsg(e))+'</div></div>'})}
+function drawStats(){
+  var b=$i("abody");
+  if(!FBA){
+    b.innerHTML='<div class="acard"><h3>'+t("s_setup")+'</h3><p class="ahelp">'+t("s_help")+'</p><ol class="how" style="padding-left:20px;line-height:1.55;font-size:.85rem;color:var(--muted)">'+t("s_steps")+'</ol><div class="ahelp" style="margin-top:10px">'+t("s_rules")+'</div><pre class="rules" id="s_rules">'+esc(RULES)+'</pre><button class="fbtn" id="s_copy" style="margin-top:0">'+t("s_copy")+'</button><label>'+t("s_url")+'<input id="s_u" placeholder="https://xxxx-default-rtdb.firebaseio.com" autocapitalize="off" spellcheck="false"></label><button class="pbtn" id="s_go2">'+t("s_save")+'</button><div class="amsg" id="s_m"></div></div>';
+    $i("s_copy").onclick=function(){var el=this,done=function(){el.textContent=t("s_copied");setTimeout(function(){el.textContent=t("s_copy")},1500)};try{navigator.clipboard.writeText(RULES).then(done,done)}catch(e){var r=document.createRange();r.selectNodeContents($i("s_rules"));var sel=getSelection();sel.removeAllRanges();sel.addRange(r);done()}};
+    $i("s_go2").onclick=function(){
+      var u=$i("s_u").value.trim().replace(/\/+$/,""),m=$i("s_m"),btn=this;
+      if(!/^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*\.(firebaseio\.com|firebasedatabase\.app)$/i.test(u)){msg(m,t("s_badurl"));return}
+      var old=btn.textContent;busy(btn,true,"…");msg(m,"");
+      fbx(u,"/visits","GET").then(function(){return updDoc("config.json",function(o){o.fb=u;return o},"Set visitor counter")}).then(function(){FBA=u;skew=null;drawStats()}).catch(function(e){msg(m,e==="denied"?t("s_denied"):(e&&e.status?errMsg(e):t("s_bad")))}).then(function(){var x=$i("s_go2");if(x)busy(x,false,old)})};
+    return}
+  b.innerHTML='<div class="acard"><h3><span class="pdot"></span>'+t("s_title")+'</h3><div class="stats"><div class="st live"><b id="s_on">–</b><span>'+t("s_on")+'</span></div><div class="st"><b id="s_td">–</b><span>'+t("s_today")+'</span></div><div class="st"><b id="s_tt">–</b><span>'+t("s_total")+'</span></div><div class="st"><b id="s_op">–</b><span>'+t("s_opens")+'</span></div></div><div class="crow" id="s_pg"></div><div class="amsg" id="s_m"></div><p class="ahelp">'+t("s_live")+'</p></div>'
+  +'<details class="acard"><summary>'+t("s_set")+'</summary><p class="ahelp" style="word-break:break-all">'+t("s_conn")+' '+esc(FBA)+'</p><button class="gbtn" id="s_dis">'+t("s_disc")+'</button></details>';
+  $i("s_dis").onclick=function(){if(!confirm(t("s_disq")))return;updDoc("config.json",function(o){o.fb="";return o},"Remove visitor counter").then(function(){FBA="";clearInterval(statT);drawStats()}).catch(function(e){msg($i("s_m"),errMsg(e))})};
+  statsLoad();statT=setInterval(function(){if($i("s_on")&&$adm.classList.contains("on"))statsLoad();else clearInterval(statT)},8000)}
+function statsLoad(){
+  if(!FBA||!$i("s_on"))return;
+  var p0=skew!==null?Promise.resolve():fbx(FBA,"/visits/srv","PUT",{".sv":"timestamp"}).then(function(v){skew=(+v||Date.now())-Date.now()});
+  p0.then(function(){return Promise.all([fbx(FBA,"/presence"),fbx(FBA,"/visitors","GET",undefined,"?shallow=true"),fbx(FBA,"/days/"+dayKey(),"GET",undefined,"?shallow=true"),fbx(FBA,"/visits/total")])}).then(function(r){
+    if(!$i("s_on"))return;
+    var now=Date.now()+(skew||0),pr=r[0]||{},on=0,pg={r:0,c:0,e:0,a:0},app=0,stale=[];
+    Object.keys(pr).forEach(function(k){var e=pr[k];if(!e||typeof e.t!=="number"){stale.push(k);return}var age=now-e.t;if(age<100000){on++;if(pg[e.p]!==undefined)pg[e.p]++;if(e.a)app++}else if(age>900000)stale.push(k)});
+    $i("s_on").textContent=nb(on);$i("s_td").textContent=nb(Object.keys(r[2]||{}).length);$i("s_tt").textContent=nb(Object.keys(r[1]||{}).length);$i("s_op").textContent=nb(+r[3]||0);
+    $i("s_pg").innerHTML=on?'<span>📚 '+nb(pg.r)+'</span><span>📅 '+nb(pg.c)+'</span><span>📝 '+nb(pg.e)+'</span><span>📢 '+nb(pg.a)+'</span><span>📱 '+t("s_app")+' '+nb(app)+'</span><span>🌐 '+t("s_web")+' '+nb(on-app)+'</span>':'';
+    msg($i("s_m"),"");
+    stale.slice(0,15).forEach(function(k){fbx(FBA,"/presence/"+k,"DELETE").catch(function(){})})
+  }).catch(function(e){var m=$i("s_m");if(m)msg(m,e==="denied"?t("s_denied"):t("s_bad"))})}
 /* ----- refresh / init ----- */
 function refresh(){
   var prev=cur;clock();markDays();
@@ -741,7 +899,8 @@ requestAnimationFrame(function(){requestAnimationFrame(function(){$seg.classList
 setTimeout(function(){document.body.classList.remove("load")},1700);
 window.addEventListener("resize",function(){updateSeg();updateLsw();markDays()});
 setInterval(refresh,10000);
-applyPerf();setTimeout(probeFps,2500);
+applyPerf();setTimeout(probeFps,2500);initPal();initSticky();
+var _cf=cachedDoc("config.json");if(_cf&&_cf.fb)startTrack(_cf.fb);
 function netUI(){$i("offl").hidden=navigator.onLine}
 window.addEventListener("online",function(){netUI();loadAll()});window.addEventListener("offline",netUI);netUI();
 if(window.matchMedia("(display-mode: standalone)").matches||navigator.standalone||/wv\)/.test(navigator.userAgent)){document.getElementById("dl").style.display="none"}

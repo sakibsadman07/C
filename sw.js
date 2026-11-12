@@ -3,8 +3,8 @@
 //  - online: always fetches the newest copy (falls back to the saved copy if the network is slow/offline)
 //  - also saves notice photos so they show offline
 // Bump V to force every phone to refresh its saved files.
-const V = "class-routine-v10";
-const PRE = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "announcements.json", "exams.json", "routine.json"];
+const V = "class-routine-v11";
+const PRE = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "announcements.json", "exams.json", "routine.json", "config.json"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(

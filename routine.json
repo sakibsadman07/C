@@ -1,0 +1,204 @@
+{
+ "rev": 1794483859811,
+ "subjects": {
+  "21011": [
+   "Engineering Drawing",
+   "#00ffff"
+  ],
+  "25711": [
+   "Bangla-1",
+   "#00ff00"
+  ],
+  "25712": [
+   "English-1",
+   "#ffffff"
+  ],
+  "25811": [
+   "Social Science",
+   "#4f6928"
+  ],
+  "25911": [
+   "Mathematics-1",
+   "#ff0000"
+  ],
+  "25912": [
+   "Physics-1",
+   "#382323"
+  ],
+  "26411": [
+   "Civil Engineering Materials",
+   "#4d7c0f"
+  ],
+  "26711": [
+   "Basic Electricity",
+   "#ea580c"
+  ]
+ },
+ "teachers": {
+  "ANA": "Md. Anamul Haque",
+  "SR": "Md. Shahinur Rahman",
+  "ANS": "Abdur Nur Sardar",
+  "SH": "Md. Saruar Hossain",
+  "MR": "Md. Musfikur Rahman",
+  "GA": "Golam Azam"
+ },
+ "days": {
+  "Sunday": [
+   {
+    "p": "1",
+    "code": "25912",
+    "t": "MR",
+    "room": "2203"
+   },
+   {
+    "p": "2",
+    "code": "26711",
+    "t": "ANA",
+    "room": "2203"
+   },
+   {
+    "p": "3",
+    "code": "25712",
+    "t": "ANS",
+    "room": "2203"
+   },
+   {
+    "p": "4",
+    "code": "25911",
+    "t": "SH",
+    "room": "2203"
+   },
+   {
+    "p": "5–7",
+    "code": "21011",
+    "t": "ANA",
+    "room": "3301 & 3302",
+    "lab": "Multi.P.B"
+   }
+  ],
+  "Monday": [
+   {
+    "p": "1–3",
+    "code": "26711",
+    "t": "ANA",
+    "room": "2503",
+    "lab": "Lab"
+   },
+   {
+    "p": "4",
+    "code": "25911",
+    "t": "SH",
+    "room": "2203"
+   },
+   {
+    "p": "5–7",
+    "code": "25912",
+    "t": "MR",
+    "room": "2403",
+    "lab": "L+P/1"
+   }
+  ],
+  "Tuesday": [
+   {
+    "p": "1–3",
+    "code": "26411",
+    "t": "GA",
+    "room": "2101",
+    "lab": "Lab"
+   },
+   {
+    "p": "4",
+    "code": "26711",
+    "t": "ANA",
+    "room": "2203"
+   },
+   {
+    "p": "5",
+    "code": "25912",
+    "t": "MR",
+    "room": "2203"
+   },
+   {
+    "p": "6",
+    "code": "25811",
+    "t": "SR",
+    "room": "2203"
+   },
+   {
+    "p": "7",
+    "code": "25711",
+    "t": "SR",
+    "room": "2203"
+   }
+  ],
+  "Wednesday": [
+   {
+    "p": "1–2",
+    "code": "21011",
+    "t": "ANA",
+    "room": "3301 & 3302",
+    "lab": "Multi.P.B"
+   },
+   {
+    "p": "3",
+    "code": "26711",
+    "t": "ANA",
+    "room": "2203"
+   },
+   {
+    "p": "4",
+    "code": "26411",
+    "t": "GA",
+    "room": "2203"
+   },
+   {
+    "p": "5",
+    "code": "25911",
+    "t": "SH",
+    "room": "2203"
+   },
+   {
+    "p": "6",
+    "code": "25711",
+    "t": "SR",
+    "room": "2203"
+   },
+   {
+    "p": "7",
+    "code": null
+   }
+  ],
+  "Thursday": [
+   {
+    "p": "1–3",
+    "code": "25911",
+    "t": "SH",
+    "room": "2203"
+   },
+   {
+    "p": "4",
+    "code": "25811",
+    "t": "SR",
+    "room": "2203"
+   },
+   {
+    "p": "5",
+    "code": "25912",
+    "t": "MR",
+    "room": "2203"
+   },
+   {
+    "p": "6",
+    "code": "26411",
+    "t": "GA",
+    "room": "2203"
+   },
+   {
+    "p": "7",
+    "code": "25712",
+    "t": "ANS",
+    "room": "2203"
+   }
+  ]
+ }
+}

@@ -3,7 +3,7 @@
 //  - online: always fetches the newest copy (falls back to the saved copy if the network is slow/offline)
 //  - also saves notice photos so they show offline
 // Bump V to force every phone to refresh its saved files.
-const V = "class-routine-v11";
+const V = "class-routine-v12";
 const PRE = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "announcements.json", "exams.json", "routine.json", "config.json"];
 
 self.addEventListener("install", function (e) {
@@ -45,6 +45,17 @@ self.addEventListener("fetch", function (e) {
       return caches.match(key, { ignoreSearch: true })
         .then(function (m) { return m || (r.mode === "navigate" ? caches.match("index.html") : null); })
         .then(function (m) { return m || Response.error(); });
+    })
+  );
+});
+
+// Tapping a notification opens (or focuses) the app.
+self.addEventListener("notificationclick", function (e) {
+  e.notification.close();
+  e.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
+      for (var i = 0; i < list.length; i++) { if ("focus" in list[i]) return list[i].focus(); }
+      return self.clients.openWindow("./");
     })
   );
 });
